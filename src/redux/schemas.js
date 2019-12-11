@@ -11,3 +11,9 @@ export const plzSchema = new schema.Entity(
   {},
   { idAttribute: "mat_plzid" }
 );
+
+export const strSchema = new schema.Entity(
+  "strs",
+  {},
+  { idAttribute: "mat_strid" }
+);

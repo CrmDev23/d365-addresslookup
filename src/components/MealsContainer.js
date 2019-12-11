@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchMeals, fetchPlzsIfNeeded } from "../redux/actions";
+import {
+  fetchMeals,
+  fetchPlzsIfNeeded,
+  fetchStrsIfNeeded
+} from "../redux/actions";
 import MealShowcase from "./MealShowcase";
 import {
   selectBreakfastMeals,
@@ -10,9 +14,13 @@ import {
 
 class MealsContainer extends Component {
   componentDidMount() {
-    const { fetchMeals, fetchPlzsIfNeeded } = this.props;
+    const { fetchMeals, fetchPlzsIfNeeded, fetchStrsIfNeeded } = this.props;
 
-    fetchMeals().then(fetchPlzsIfNeeded());
+    fetchMeals().then(
+      fetchPlzsIfNeeded().then(
+        fetchStrsIfNeeded("fe6b4b2a-5c13-ea11-a81e-000d3aba6cd3")
+      )
+    );
   }
 
   render() {
@@ -34,7 +42,7 @@ const mapStateToProps = state => ({
   dinnerMeals: selectDinnerMeals(state)
 });
 
-const actionCreators = { fetchMeals, fetchPlzsIfNeeded };
+const actionCreators = { fetchMeals, fetchPlzsIfNeeded, fetchStrsIfNeeded };
 
 export default connect(
   mapStateToProps,

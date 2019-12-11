@@ -1,7 +1,13 @@
-import { fetchBreakfast, fetchDinner, fetchLunch, fetchPlz } from "./services";
+import {
+  fetchBreakfast,
+  fetchDinner,
+  fetchLunch,
+  fetchPlz,
+  fetchStr
+} from "./services";
 import { normalize } from "normalizr";
 import _isEmpty from "lodash/isEmpty";
-import { mealSchema, plzSchema } from "./schemas";
+import { mealSchema, plzSchema, strSchema } from "./schemas";
 
 export const FETCH_MEALS = "FETCH_MEALS";
 export const FETCH_PLZS = "FETCH_PLZS";
@@ -19,14 +25,6 @@ const saveMeals = (entities, mealKey, mealValues) => ({
   }
 });
 
-const savePlzs = (plzEntities, plzValues) => ({
-  type: FETCH_PLZS,
-  payload: {
-    plzEntities,
-    plzValues
-  }
-});
-
 export const setRating = (id, rating) => ({
   type: SET_RATING,
   payload: {
@@ -40,13 +38,6 @@ const fetchMealCallback = (mealKey, dispatch) => res => {
   const { entities, result } = normalize(data, [mealSchema]);
 
   return dispatch(saveMeals(entities, mealKey, result));
-};
-
-const fetchPlzCallback = dispatch => res => {
-  const { data } = res;
-  const { entities, result } = normalize(data, [plzSchema]);
-
-  return dispatch(savePlzs(entities, result));
 };
 
 export const fetchMeals = () => dispatch => {
@@ -79,5 +70,39 @@ export const shouldFetchPlzs = state => {
 };
 
 export const fetchPlzs = () => dispatch => {
-  return fetchPlz().then(fetchPlzCallback(dispatch));
+  return fetchPlz().then(fetchCallback(dispatch, plzSchema, FETCH_PLZS));
 };
+
+export const fetchStrsIfNeeded = plz => (dispatch, getState) => {
+  if (shouldFetchStrs(getState(), plz)) {
+    return dispatch(fetchStrs(plz));
+  }
+};
+
+export const shouldFetchStrs = (state, plz) => {
+  const strs = state.entities.strs;
+  if (_isEmpty(strs)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const fetchStrs = plz => dispatch => {
+  return fetchStr(plz).then(fetchCallback(dispatch, strSchema, FETCH_STRS));
+};
+
+const fetchCallback = (dispatch, schema, type) => res => {
+  const { data } = res;
+  const { entities, result } = normalize(data, [schema]);
+
+  return dispatch(saveResult(entities, result, type));
+};
+
+const saveResult = (resultEntities, resultValues, resultType) => ({
+  type: resultType,
+  payload: {
+    resultEntities,
+    resultValues
+  }
+});
