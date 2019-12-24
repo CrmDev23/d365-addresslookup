@@ -29,3 +29,9 @@ export const getPlzsByIds = (state, ids) => {
     .filter(key => ids.indexOf(key) !== -1)
     .map(key => state.entities.plzs[key]);
 };
+
+export const getStrsByPlzId = (state, plzId) => {
+  Object.keys(state.entities.strs)
+    .map(key => state.entities.strs[key])
+    .filter(str => str._mat_plzid_value === plzId);
+};

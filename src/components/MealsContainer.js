@@ -20,14 +20,34 @@ import {
 } from "../redux/selectors";
 
 class MealsContainer extends Component {
-  componentDidMount() {
-    const { fetchMeals, fetchPlzsIfNeeded, fetchStrsIfNeeded } = this.props;
+  constructor(props) {
+    super(props);
+  }
 
-    fetchMeals().then(
-      fetchPlzsIfNeeded().then(
-        fetchStrsIfNeeded("fe6b4b2a-5c13-ea11-a81e-000d3aba6cd3")
-      )
-    );
+  componentDidMount() {
+    const {
+      fetchMeals,
+      fetchPlzsIfNeeded,
+      fetchStrsIfNeeded,
+      selectedPlz
+    } = this.props;
+
+    fetchMeals()
+      .then(() => {
+        fetchPlzsIfNeeded();
+      })
+      .then(() => {
+        fetchStrsIfNeeded(selectedPlz);
+      });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedPlz !== this.props.selectedPlz) {
+      const { fetchPlzsIfNeeded, fetchStrsIfNeeded, selectedPlz } = this.props;
+      fetchPlzsIfNeeded().then(() => {
+        fetchStrsIfNeeded(selectedPlz);
+      });
+    }
   }
 
   render() {

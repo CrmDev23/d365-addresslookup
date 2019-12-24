@@ -7,7 +7,8 @@ import {
   FETCH_STRS,
   SET_PLZ,
   SET_STR,
-  SET_GEB
+  SET_GEB,
+  SET_UI_STRS
 } from "./actions";
 
 const initialState = {
@@ -68,6 +69,14 @@ const reducer = (state = initialState, action) => {
 
       newState = produce(state, draft => {
         draft.ui.selectedPlz = plzid;
+      });
+
+      break;
+    case SET_UI_STRS:
+      const { strs } = payload;
+
+      newState = produce(state, draft => {
+        draft.ui.strs = strs;
       });
 
       break;

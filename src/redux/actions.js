@@ -8,6 +8,7 @@ import {
 import { normalize } from "normalizr";
 import _isEmpty from "lodash/isEmpty";
 import { mealSchema, plzSchema, strSchema } from "./schemas";
+import { getStrsByPlzId } from "../redux/selectors";
 
 export const FETCH_MEALS = "FETCH_MEALS";
 export const FETCH_PLZS = "FETCH_PLZS";
@@ -18,6 +19,7 @@ export const SET_RATING = "SET_RATING";
 export const SET_PLZ = "SET_PLZ";
 export const SET_STR = "SET_STR";
 export const SET_GEB = "SET_GEB";
+export const SET_UI_STRS = "SET_UI_STRS";
 
 const saveMeals = (entities, mealKey, mealValues) => ({
   type: FETCH_MEALS,
@@ -48,6 +50,13 @@ export const setStr = (strid, str) => ({
   payload: {
     strid,
     str
+  }
+});
+
+export const setUiStrs = strs => ({
+  type: SET_UI_STRS,
+  payload: {
+    strs
   }
 });
 
@@ -83,6 +92,8 @@ export const fetchMeals = () => dispatch => {
 export const fetchPlzsIfNeeded = () => (dispatch, getState) => {
   if (shouldFetchPlzs(getState())) {
     return dispatch(fetchPlzs());
+  } else {
+    return Promise.resolve();
   }
 };
 
@@ -104,15 +115,16 @@ export const fetchPlzs = () => dispatch => {
 export const fetchStrsIfNeeded = plz => (dispatch, getState) => {
   if (shouldFetchStrs(getState(), plz)) {
     return dispatch(fetchStrs(plz));
+  } else {
+    return dispatch(saveResult);
   }
 };
 
 export const shouldFetchStrs = (state, plz) => {
-  const strs = state.entities.strs;
-  if (_isEmpty(strs)) {
-    return true;
-  } else {
+  if (getStrsByPlzId(state, plz) != null) {
     return false;
+  } else {
+    return true;
   }
 };
 
