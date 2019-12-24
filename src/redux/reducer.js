@@ -1,15 +1,26 @@
 import { produce } from "immer";
 import _merge from "lodash/merge";
-import { FETCH_MEALS, SET_RATING, FETCH_PLZS, FETCH_STRS } from "./actions";
+import {
+  FETCH_MEALS,
+  SET_RATING,
+  FETCH_PLZS,
+  FETCH_STRS,
+  SET_PLZ,
+  SET_STR,
+  SET_GEB
+} from "./actions";
 
 const initialState = {
   ui: {
     breakfast: [],
     lunch: [],
     dinner: [],
-    selectedPlz: {},
-    selectedStr: {},
-    selectedGeb: {}
+    plzs: [],
+    strs: [],
+    gebs: [],
+    selectedPlz: "",
+    selectedStr: "",
+    selectedGeb: ""
   },
   entities: {
     meals: {},
@@ -36,10 +47,11 @@ const reducer = (state = initialState, action) => {
       break;
     case FETCH_PLZS:
     case FETCH_STRS:
-      const { resultEntities, resultValues } = payload;
+      const { resultEntities, entityKey, resultValues } = payload;
 
       newState = produce(state, draft => {
         _merge(draft.entities, resultEntities);
+        draft.ui[entityKey] = resultValues;
       });
 
       break;
@@ -48,6 +60,14 @@ const reducer = (state = initialState, action) => {
 
       newState = produce(state, draft => {
         draft.entities.ratings[id].value = rating;
+      });
+
+      break;
+    case SET_PLZ:
+      const { plzid } = payload;
+
+      newState = produce(state, draft => {
+        draft.ui.selectedPlz = plzid;
       });
 
       break;

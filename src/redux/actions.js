@@ -15,6 +15,9 @@ export const FETCH_STRS = "FETCH_STRS";
 export const FETCH_GEBS = "FETCH_GEBS";
 
 export const SET_RATING = "SET_RATING";
+export const SET_PLZ = "SET_PLZ";
+export const SET_STR = "SET_STR";
+export const SET_GEB = "SET_GEB";
 
 const saveMeals = (entities, mealKey, mealValues) => ({
   type: FETCH_MEALS,
@@ -30,6 +33,29 @@ export const setRating = (id, rating) => ({
   payload: {
     id,
     rating
+  }
+});
+
+export const setPlz = plzid => ({
+  type: SET_PLZ,
+  payload: {
+    plzid
+  }
+});
+
+export const setStr = (strid, str) => ({
+  type: SET_STR,
+  payload: {
+    strid,
+    str
+  }
+});
+
+export const setGeb = (gebid, geb) => ({
+  type: SET_GEB,
+  payload: {
+    gebid,
+    geb
   }
 });
 
@@ -70,7 +96,9 @@ export const shouldFetchPlzs = state => {
 };
 
 export const fetchPlzs = () => dispatch => {
-  return fetchPlz().then(fetchCallback(dispatch, plzSchema, FETCH_PLZS));
+  return fetchPlz().then(
+    fetchCallback("plzs", dispatch, plzSchema, FETCH_PLZS)
+  );
 };
 
 export const fetchStrsIfNeeded = plz => (dispatch, getState) => {
@@ -89,20 +117,23 @@ export const shouldFetchStrs = (state, plz) => {
 };
 
 export const fetchStrs = plz => dispatch => {
-  return fetchStr(plz).then(fetchCallback(dispatch, strSchema, FETCH_STRS));
+  return fetchStr(plz).then(
+    fetchCallback("strs", dispatch, strSchema, FETCH_STRS)
+  );
 };
 
-const fetchCallback = (dispatch, schema, type) => res => {
+const fetchCallback = (entityKey, dispatch, schema, type) => res => {
   const { data } = res;
   const { entities, result } = normalize(data, [schema]);
 
-  return dispatch(saveResult(entities, result, type));
+  return dispatch(saveResult(entities, entityKey, result, type));
 };
 
-const saveResult = (resultEntities, resultValues, resultType) => ({
+const saveResult = (resultEntities, entityKey, resultValues, resultType) => ({
   type: resultType,
   payload: {
     resultEntities,
+    entityKey,
     resultValues
   }
 });

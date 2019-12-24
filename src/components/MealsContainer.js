@@ -6,10 +6,17 @@ import {
   fetchStrsIfNeeded
 } from "../redux/actions";
 import MealShowcase from "./MealShowcase";
+import PlzPickerSelect from "./PlzPickerSelect";
 import {
   selectBreakfastMeals,
   selectDinnerMeals,
-  selectLunchMeals
+  selectLunchMeals,
+  selectPlzs,
+  selectStrs,
+  selectGebs,
+  selectedPlz,
+  selectedStr,
+  selectedGeb
 } from "../redux/selectors";
 
 class MealsContainer extends Component {
@@ -24,13 +31,24 @@ class MealsContainer extends Component {
   }
 
   render() {
-    const { breakfastMeals, lunchMeals, dinnerMeals } = this.props;
+    const {
+      breakfastMeals,
+      lunchMeals,
+      dinnerMeals,
+      plzs,
+      strs,
+      gebs,
+      selectedPlz,
+      selectedStr,
+      selectedGeb
+    } = this.props;
 
     return (
       <div className="meals-container">
         <MealShowcase title="Breakfast" meals={breakfastMeals} />
         <MealShowcase title="Lunch" meals={lunchMeals} />
         <MealShowcase title="Dinner" meals={dinnerMeals} />
+        <PlzPickerSelect options={plzs} value={selectedPlz} />
       </div>
     );
   }
@@ -39,7 +57,13 @@ class MealsContainer extends Component {
 const mapStateToProps = state => ({
   breakfastMeals: selectBreakfastMeals(state),
   lunchMeals: selectLunchMeals(state),
-  dinnerMeals: selectDinnerMeals(state)
+  dinnerMeals: selectDinnerMeals(state),
+  plzs: selectPlzs(state),
+  strs: selectStrs(state),
+  gebs: selectGebs(state),
+  selectedPlz: selectedPlz(state),
+  selectedStr: selectedStr(state),
+  selectedGeb: selectedGeb(state)
 });
 
 const actionCreators = { fetchMeals, fetchPlzsIfNeeded, fetchStrsIfNeeded };
