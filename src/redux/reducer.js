@@ -5,6 +5,7 @@ import {
   SET_RATING,
   FETCH_PLZS,
   FETCH_STRS,
+  FETCH_GEBS,
   SET_PLZ,
   SET_STR,
   SET_GEB
@@ -47,6 +48,7 @@ const reducer = (state = initialState, action) => {
       break;
     case FETCH_PLZS:
     case FETCH_STRS:
+    case FETCH_GEBS:
       const { resultEntities, entityKey, resultValues } = payload;
 
       newState = produce(state, draft => {
