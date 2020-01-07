@@ -3,11 +3,11 @@ import {
   fetchDinner,
   fetchLunch,
   fetchPlz,
-  fetchStr
+  fetchStr,
+  fetchGeb
 } from "./services";
 import { normalize } from "normalizr";
-import { mealSchema, plzSchema, strSchema } from "./schemas";
-import { getStrsByPlzId } from "../redux/selectors";
+import { mealSchema, plzSchema, strSchema, gebSchema } from "./schemas";
 
 export const FETCH_MEALS = "FETCH_MEALS";
 export const FETCH_PLZS = "FETCH_PLZS";
@@ -89,6 +89,12 @@ export const fetchPlzs = () => dispatch => {
 export const fetchStrs = plz => dispatch => {
   return fetchStr(plz).then(
     fetchCallback("strs", dispatch, strSchema, FETCH_STRS)
+  );
+};
+
+export const fetchGebs = str => dispatch => {
+  return fetchGeb(str).then(
+    fetchCallback("gebs", dispatch, gebSchema, FETCH_GEBS)
   );
 };
 

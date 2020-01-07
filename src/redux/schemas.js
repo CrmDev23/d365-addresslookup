@@ -17,3 +17,9 @@ export const strSchema = new schema.Entity(
   {},
   { idAttribute: "mat_strid" }
 );
+
+export const gebSchema = new schema.Entity(
+  "gebs",
+  {},
+  { idAttribute: "mat_gebid" }
+);

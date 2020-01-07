@@ -26,10 +26,9 @@ export const getPlzById = (state, id) => state.entities.plzs[id];
 
 export const getPlzsByIds = (state, ids) =>
   ids.map(id => state.entities.plzs[id]);
+
 export const getStrsByIds = (state, ids) =>
   ids.map(id => state.entities.strs[id]);
-export const getStrsByPlzId = (state, plzId) => {
-  return Object.keys(state.entities.strs)
-    .map(key => state.entities.strs[key])
-    .filter(str => str._mat_plzid_value === plzId);
-};
+
+export const getGebsByIds = (state, ids) =>
+  ids.map(id => state.entities.gebs[id]);

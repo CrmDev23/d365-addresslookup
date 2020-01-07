@@ -71,6 +71,22 @@ const reducer = (state = initialState, action) => {
       });
 
       break;
+    case SET_STR:
+      const { strid } = payload;
+
+      newState = produce(state, draft => {
+        draft.ui.selectedStr = strid;
+      });
+
+      break;
+    case SET_GEB:
+      const { gebid } = payload;
+
+      newState = produce(state, draft => {
+        draft.ui.selectedGeb = gebid;
+      });
+
+      break;
     default:
   }
 
