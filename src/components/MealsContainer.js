@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchMeals, fetchPlzs, fetchStrs, fetchGebs } from "../redux/actions";
 import MealShowcase from "./MealShowcase";
 import PlzPickerSelect from "./PlzPickerSelect";
+import StrPickerSelect from "./StrPickerSelect";
 import {
   selectBreakfastMeals,
   selectDinnerMeals,
@@ -17,20 +18,18 @@ import {
 
 class MealsContainer extends Component {
   componentDidMount() {
-    const { fetchMeals, fetchPlzs, fetchStrs, selectedPlz } = this.props;
+    const { fetchPlzs } = this.props;
 
-    fetchPlzs().then(() => {
-      fetchStrs(selectedPlz);
-    });
+    fetchPlzs();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.selectedPlz !== this.props.selectedPlz) {
-      const { selectedPlz } = this.props;
+      const { fetchStrs, selectedPlz } = this.props;
       fetchStrs(selectedPlz);
     }
     if (prevProps.selectedStr !== this.props.selectedStr) {
-      const { selectedStr } = this.props;
+      const { fetchGebs, selectedStr } = this.props;
       fetchGebs(selectedStr);
     }
   }

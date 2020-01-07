@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setPlz } from "../redux/actions";
+import { setStr } from "../redux/actions";
 import { getStrsByIds } from "../redux/selectors";
 
 class StrPickerSelect extends Component {
@@ -16,7 +16,7 @@ class StrPickerSelect extends Component {
           value={value}
         >
           {options.map(str => (
-            <option value={str.mat_str_strid} key={str.mat_str_strid}>
+            <option value={str.mat_strid} key={str.mat_strid}>
               {str.mat_str_strbez2l}
             </option>
           ))}
@@ -30,7 +30,7 @@ const mapStateToProps = (state, { options }) => ({
   options: getStrsByIds(state, options)
 });
 
-const actionCreators = { setPlz };
+const actionCreators = { setStr };
 
 export default connect(
   mapStateToProps,
