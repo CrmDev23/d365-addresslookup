@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  fetchMeals,
-  fetchPlzsIfNeeded,
-  fetchStrsIfNeeded
-} from "../redux/actions";
+import { fetchMeals, fetchPlzs, fetchStrs } from "../redux/actions";
 import MealShowcase from "./MealShowcase";
 import PlzPickerSelect from "./PlzPickerSelect";
 import {
@@ -25,27 +21,22 @@ class MealsContainer extends Component {
   }
 
   componentDidMount() {
-    const {
-      fetchMeals,
-      fetchPlzsIfNeeded,
-      fetchStrsIfNeeded,
-      selectedPlz
-    } = this.props;
+    const { fetchMeals, fetchPlzs, fetchStrs, selectedPlz } = this.props;
 
     fetchMeals()
       .then(() => {
-        fetchPlzsIfNeeded();
+        fetchPlzs();
       })
       .then(() => {
-        fetchStrsIfNeeded(selectedPlz);
+        fetchStrs(selectedPlz);
       });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.selectedPlz !== this.props.selectedPlz) {
-      const { fetchPlzsIfNeeded, fetchStrsIfNeeded, selectedPlz } = this.props;
-      fetchPlzsIfNeeded().then(() => {
-        fetchStrsIfNeeded(selectedPlz);
+      const { fetchPlzs, fetchStrs, selectedPlz } = this.props;
+      fetchPlzs().then(() => {
+        fetchStrs(selectedPlz);
       });
     }
   }
@@ -86,7 +77,7 @@ const mapStateToProps = state => ({
   selectedGeb: selectedGeb(state)
 });
 
-const actionCreators = { fetchMeals, fetchPlzsIfNeeded, fetchStrsIfNeeded };
+const actionCreators = { fetchMeals, fetchPlzs, fetchStrs };
 
 export default connect(
   mapStateToProps,

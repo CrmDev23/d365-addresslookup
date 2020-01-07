@@ -19,7 +19,6 @@ export const SET_RATING = "SET_RATING";
 export const SET_PLZ = "SET_PLZ";
 export const SET_STR = "SET_STR";
 export const SET_GEB = "SET_GEB";
-export const SET_UI_STRS = "SET_UI_STRS";
 
 const saveMeals = (entities, mealKey, mealValues) => ({
   type: FETCH_MEALS,
@@ -53,13 +52,6 @@ export const setStr = (strid, str) => ({
   }
 });
 
-export const setUiStrs = strs => ({
-  type: SET_UI_STRS,
-  payload: {
-    strs
-  }
-});
-
 export const setGeb = (gebid, geb) => ({
   type: SET_GEB,
   payload: {
@@ -89,43 +81,10 @@ export const fetchMeals = () => dispatch => {
   return Promise.all([breakfastPromise, lunchPromise, dinnerPromise]);
 };
 
-export const fetchPlzsIfNeeded = () => (dispatch, getState) => {
-  if (shouldFetchPlzs(getState())) {
-    return dispatch(fetchPlzs());
-  } else {
-    return Promise.resolve();
-  }
-};
-
-export const shouldFetchPlzs = state => {
-  const plzs = state.entities.plzs;
-  if (_isEmpty(plzs)) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
 export const fetchPlzs = () => dispatch => {
   return fetchPlz().then(
     fetchCallback("plzs", dispatch, plzSchema, FETCH_PLZS)
   );
-};
-
-export const fetchStrsIfNeeded = plz => (dispatch, getState) => {
-  if (shouldFetchStrs(getState(), plz)) {
-    return dispatch(fetchStrs(plz));
-  } else {
-    return dispatch(saveResult);
-  }
-};
-
-export const shouldFetchStrs = (state, plz) => {
-  if (getStrsByPlzId(state, plz) != null) {
-    return false;
-  } else {
-    return true;
-  }
 };
 
 export const fetchStrs = plz => dispatch => {
