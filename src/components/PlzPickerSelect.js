@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PlzPickerOption from "./PlzPickerOption";
 import { setPlz } from "../redux/actions";
+import { getPlzsByIds } from "../redux/selectors";
 
 class PlzPickerSelect extends Component {
   render() {
@@ -15,8 +15,10 @@ class PlzPickerSelect extends Component {
           }}
           value={value}
         >
-          {options.map(m => (
-            <PlzPickerOption key={m} id={m} />
+          {options.map(plz => (
+            <option value={plz.mat_plzid} key={plz.mat_plzid}>
+              {plz.mat_plz_postleitzahl}
+            </option>
           ))}
         </select>
       </span>
@@ -24,9 +26,13 @@ class PlzPickerSelect extends Component {
   }
 }
 
+const mapStateToProps = (state, { options }) => ({
+  options: getPlzsByIds(state, options)
+});
+
 const actionCreators = { setPlz };
 
 export default connect(
-  null,
+  mapStateToProps,
   actionCreators
 )(PlzPickerSelect);

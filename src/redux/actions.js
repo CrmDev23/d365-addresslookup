@@ -6,7 +6,6 @@ import {
   fetchStr
 } from "./services";
 import { normalize } from "normalizr";
-import _isEmpty from "lodash/isEmpty";
 import { mealSchema, plzSchema, strSchema } from "./schemas";
 import { getStrsByPlzId } from "../redux/selectors";
 

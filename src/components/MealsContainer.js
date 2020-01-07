@@ -16,10 +16,6 @@ import {
 } from "../redux/selectors";
 
 class MealsContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const { fetchMeals, fetchPlzs, fetchStrs, selectedPlz } = this.props;
 

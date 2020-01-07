@@ -24,14 +24,12 @@ export const getRatingById = (state, id) => state.entities.ratings[id];
 
 export const getPlzById = (state, id) => state.entities.plzs[id];
 
-export const getPlzsByIds = (state, ids) => {
-  Object.keys(state.entities.plzs)
-    .filter(key => ids.indexOf(key) !== -1)
-    .map(key => state.entities.plzs[key]);
-};
-
+export const getPlzsByIds = (state, ids) =>
+  ids.map(id => state.entities.plzs[id]);
+export const getStrsByIds = (state, ids) =>
+  ids.map(id => state.entities.strs[id]);
 export const getStrsByPlzId = (state, plzId) => {
-  Object.keys(state.entities.strs)
+  return Object.keys(state.entities.strs)
     .map(key => state.entities.strs[key])
     .filter(str => str._mat_plzid_value === plzId);
 };
