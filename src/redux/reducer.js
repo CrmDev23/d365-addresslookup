@@ -37,23 +37,45 @@ const reducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case FETCH_MEALS:
-      const { entities, mealKey, mealValues } = payload;
+    case FETCH_PLZS:
+      const {
+        resultEntities: resultEntitiesPlz,
+        entityKey: entityKeyPlz,
+        resultValues: resultValuesPlz
+      } = payload;
 
       newState = produce(state, draft => {
-        _merge(draft.entities, entities);
-        draft.ui[mealKey] = mealValues;
+        _merge(draft.entities, resultEntitiesPlz);
+        draft.ui[entityKeyPlz] = resultValuesPlz;
+        draft.ui.selectedPlz = resultValuesPlz[0];
       });
 
       break;
-    case FETCH_PLZS:
     case FETCH_STRS:
-    case FETCH_GEBS:
-      const { resultEntities, entityKey, resultValues } = payload;
+      const {
+        resultEntities: resultEntitiesStr,
+        entityKey: entityKeyStr,
+        resultValues: resultValuesStr
+      } = payload;
 
       newState = produce(state, draft => {
-        _merge(draft.entities, resultEntities);
-        draft.ui[entityKey] = resultValues;
+        _merge(draft.entities, resultEntitiesStr);
+        draft.ui[entityKeyStr] = resultValuesStr;
+        draft.ui.selectedStr = resultValuesStr[0];
+      });
+
+      break;
+    case FETCH_GEBS:
+      const {
+        resultEntities: resultEntitiesGeb,
+        entityKey: entityKeyGeb,
+        resultValues: resultValuesGeb
+      } = payload;
+
+      newState = produce(state, draft => {
+        _merge(draft.entities, resultEntitiesGeb);
+        draft.ui[entityKeyGeb] = resultValuesGeb;
+        draft.ui.selectedGeb = resultValuesGeb[0];
       });
 
       break;

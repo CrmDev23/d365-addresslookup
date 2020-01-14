@@ -49,9 +49,6 @@ class MealsContainer extends Component {
 
     return (
       <div className="meals-container">
-        <MealShowcase title="Breakfast" meals={breakfastMeals} />
-        <MealShowcase title="Lunch" meals={lunchMeals} />
-        <MealShowcase title="Dinner" meals={dinnerMeals} />
         <PlzPickerSelect options={plzs} value={selectedPlz} />
         <StrPickerSelect options={strs} value={selectedStr} />
         <GebPickerSelect options={gebs} value={selectedGeb} />
