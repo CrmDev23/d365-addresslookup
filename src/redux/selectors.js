@@ -23,4 +23,6 @@ export const getStrsByIds = (state, ids) =>
   ids.map(id => state.entities.strs[id]);
 
 export const getGebsByIds = (state, ids) =>
-  ids.map(id => state.entities.gebs[id]);
+  ids.map(id => state.entities.gebs[id]).sort((a, b) => {
+    return Number(a.mat_geb_hnr) - Number(b.mat_geb_hnr);
+  });
