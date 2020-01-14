@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchMeals, fetchPlzs, fetchStrs, fetchGebs } from "../redux/actions";
-import MealShowcase from "./MealShowcase";
+import { fetchPlzs, fetchStrs, fetchGebs } from "../redux/actions";
 import PlzPickerSelect from "./PlzPickerSelect";
 import StrPickerSelect from "./StrPickerSelect";
 import GebPickerSelect from "./GebPickerSelect";
 import {
-  selectBreakfastMeals,
-  selectDinnerMeals,
-  selectLunchMeals,
   selectPlzs,
   selectStrs,
   selectGebs,
@@ -36,9 +32,6 @@ class MealsContainer extends Component {
 
   render() {
     const {
-      breakfastMeals,
-      lunchMeals,
-      dinnerMeals,
       plzs,
       strs,
       gebs,
@@ -58,9 +51,6 @@ class MealsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  breakfastMeals: selectBreakfastMeals(state),
-  lunchMeals: selectLunchMeals(state),
-  dinnerMeals: selectDinnerMeals(state),
   plzs: selectPlzs(state),
   strs: selectStrs(state),
   gebs: selectGebs(state),
@@ -69,7 +59,7 @@ const mapStateToProps = state => ({
   selectedGeb: selectedGeb(state)
 });
 
-const actionCreators = { fetchMeals, fetchPlzs, fetchStrs, fetchGebs };
+const actionCreators = { fetchPlzs, fetchStrs, fetchGebs };
 
 export default connect(
   mapStateToProps,

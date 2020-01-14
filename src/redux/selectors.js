@@ -1,9 +1,4 @@
 // General Selectors
-export const selectBreakfastMeals = state => state.ui.breakfast;
-
-export const selectLunchMeals = state => state.ui.lunch;
-
-export const selectDinnerMeals = state => state.ui.dinner;
 
 export const selectPlzs = state => state.ui.plzs;
 
@@ -18,9 +13,6 @@ export const selectedStr = state => state.ui.selectedStr;
 export const selectedGeb = state => state.ui.selectedGeb;
 
 // By id selectors
-export const getMealById = (state, id) => state.entities.meals[id];
-
-export const getRatingById = (state, id) => state.entities.ratings[id];
 
 export const getPlzById = (state, id) => state.entities.plzs[id];
 

@@ -1,40 +1,14 @@
-import {
-  fetchBreakfast,
-  fetchDinner,
-  fetchLunch,
-  fetchPlz,
-  fetchStr,
-  fetchGeb
-} from "./services";
+import { fetchPlz, fetchStr, fetchGeb } from "./services";
 import { normalize } from "normalizr";
-import { mealSchema, plzSchema, strSchema, gebSchema } from "./schemas";
+import { plzSchema, strSchema, gebSchema } from "./schemas";
 
-export const FETCH_MEALS = "FETCH_MEALS";
 export const FETCH_PLZS = "FETCH_PLZS";
 export const FETCH_STRS = "FETCH_STRS";
 export const FETCH_GEBS = "FETCH_GEBS";
 
-export const SET_RATING = "SET_RATING";
 export const SET_PLZ = "SET_PLZ";
 export const SET_STR = "SET_STR";
 export const SET_GEB = "SET_GEB";
-
-const saveMeals = (entities, mealKey, mealValues) => ({
-  type: FETCH_MEALS,
-  payload: {
-    entities,
-    mealKey,
-    mealValues
-  }
-});
-
-export const setRating = (id, rating) => ({
-  type: SET_RATING,
-  payload: {
-    id,
-    rating
-  }
-});
 
 export const setPlz = plzid => ({
   type: SET_PLZ,
@@ -58,27 +32,6 @@ export const setGeb = (gebid, geb) => ({
     geb
   }
 });
-
-const fetchMealCallback = (mealKey, dispatch) => res => {
-  const { data } = res;
-  const { entities, result } = normalize(data, [mealSchema]);
-
-  return dispatch(saveMeals(entities, mealKey, result));
-};
-
-export const fetchMeals = () => dispatch => {
-  const breakfastPromise = fetchBreakfast().then(
-    fetchMealCallback("breakfast", dispatch)
-  );
-
-  const lunchPromise = fetchLunch().then(fetchMealCallback("lunch", dispatch));
-
-  const dinnerPromise = fetchDinner().then(
-    fetchMealCallback("dinner", dispatch)
-  );
-
-  return Promise.all([breakfastPromise, lunchPromise, dinnerPromise]);
-};
 
 export const fetchPlzs = () => dispatch => {
   return fetchPlz().then(
