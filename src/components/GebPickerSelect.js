@@ -17,7 +17,9 @@ class GebPickerSelect extends Component {
         >
           {options.map(str => (
             <option value={str.mat_gebid} key={str.mat_gebid}>
-              {str.mat_geb_hnr}
+              {str.mat_geb_hnra
+                ? str.mat_geb_hnr + str.mat_geb_hnra
+                : str.mat_geb_hnr}
             </option>
           ))}
         </select>
