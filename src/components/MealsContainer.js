@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPlzs, fetchStrs, fetchGebs } from "../redux/actions";
+import OrtPickerSelect from "./OrtPickerSelect";
 import PlzPickerSelect from "./PlzPickerSelect";
 import StrPickerSelect from "./StrPickerSelect";
 import GebPickerSelect from "./GebPickerSelect";
@@ -42,6 +43,7 @@ class MealsContainer extends Component {
 
     return (
       <div className="meals-container">
+        <OrtPickerSelect options={plzs} value={selectedPlz} />
         <PlzPickerSelect options={plzs} value={selectedPlz} />
         <StrPickerSelect options={strs} value={selectedStr} />
         <GebPickerSelect options={gebs} value={selectedGeb} />

@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setPlz } from "../redux/actions";
 import { getPlzsByIds } from "../redux/selectors";
-import _sortBy from "lodash/sortBy";
 
-class PlzPickerSelect extends Component {
+class OrtPickerSelect extends Component {
   render() {
     const { options, value, setPlz } = this.props;
-    let optionsSorted = _sortBy(options, ["mat_plz_postleitzahl"]);
 
     return (
       <span>
@@ -18,9 +16,9 @@ class PlzPickerSelect extends Component {
           }}
           value={value}
         >
-          {optionsSorted.map(plz => (
+          {options.map(plz => (
             <option value={plz.mat_plzid} key={plz.mat_plzid}>
-              {plz.mat_plz_postleitzahl}
+              {plz.mat_plz_ortbez27}
             </option>
           ))}
         </select>
@@ -38,4 +36,4 @@ const actionCreators = { setPlz };
 export default connect(
   mapStateToProps,
   actionCreators
-)(PlzPickerSelect);
+)(OrtPickerSelect);
