@@ -80748,5 +80748,58 @@
             "mat_geb_hnr": 42,
             "mat_gebid": "a967d217-4a36-ea11-a813-000d3aba94ad"
         }
-    ]
+    ],
+	"contacts": [
+        {
+            "@odata.etag": "W/\"11527065\"",
+            "lastname": null,
+            "firstname": null,
+            "address1_line1": null,
+            "address1_postalcode": null,
+            "address1_city": null,
+            "contactid": "a8357549-a936-ea11-a813-000d3aba6b7b"
+        },
+        {
+            "@odata.etag": "W/\"11539224\"",
+            "lastname": "Kurmann",
+            "firstname": "Benno",
+            "address1_line1": null,
+            "address1_postalcode": null,
+            "address1_city": null,
+            "contactid": "5086c9e1-a936-ea11-a813-000d3aba6b7b"
+        },
+        {
+            "@odata.etag": "W/\"11494613\"",
+            "lastname": "Customer",
+            "firstname": "Portal",
+            "address1_line1": "8201 164th Avenue NE",
+            "address1_postalcode": "98052",
+            "address1_city": "Redmond",
+            "contactid": "99db51a2-c34e-e111-bb8d-00155d03a715"
+        }
+	],
+	"mat_configs": [
+        {
+            "@odata.etag": "W/\"11987536\"",
+            "_organizationid_value": "9edaea54-9cec-4d7f-9841-477c6b710298",
+            "mat_configid": "982ee1a1-0f36-ea11-a813-000d3aba6d81",
+            "mat_strimportsequencenumber": 23,
+            "statecode": 0,
+            "statuscode": 1,
+            "_createdby_value": "1a61c3fc-2dda-4705-aa74-d444921bbf5e",
+            "mat_plzimportsequencenumber": 22,
+            "mat_gebimportsequencenumber": 24,
+            "modifiedon": "2020-01-15T14:05:02Z",
+            "_modifiedby_value": "1a61c3fc-2dda-4705-aa74-d444921bbf5e",
+            "versionnumber": 11987536,
+            "createdon": "2020-01-13T14:18:56Z",
+            "overriddencreatedon": null,
+            "_modifiedonbehalfby_value": null,
+            "utcconversiontimezonecode": null,
+            "mat_name": null,
+            "timezoneruleversionnumber": null,
+            "_createdonbehalfby_value": null,
+            "importsequencenumber": null
+        }
+	]
 }
