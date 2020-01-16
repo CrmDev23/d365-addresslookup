@@ -11,3 +11,4 @@ export const fetchGeb = str =>
   axios.get(
     BASE_URL + "mat_gebs?_mat_strid_value=" + str + "&_sort=mat_geb_hnr"
   );
+export const fetchConfig = () => axios.get(BASE_URL + "mat_configs");

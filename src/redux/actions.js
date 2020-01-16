@@ -1,14 +1,16 @@
-import { fetchPlz, fetchStr, fetchGeb } from "./services";
+import { fetchPlz, fetchStr, fetchGeb, fetchConfig } from "./services";
 import { normalize } from "normalizr";
-import { plzSchema, strSchema, gebSchema } from "./schemas";
+import { plzSchema, strSchema, gebSchema, configSchema } from "./schemas";
 
 export const FETCH_PLZS = "FETCH_PLZS";
 export const FETCH_STRS = "FETCH_STRS";
 export const FETCH_GEBS = "FETCH_GEBS";
+export const FETCH_CONFIGS = "FETCH_CONFIGS";
 
 export const SET_PLZ = "SET_PLZ";
 export const SET_STR = "SET_STR";
 export const SET_GEB = "SET_GEB";
+export const SET_OBJECT = "SET_OBJECT";
 
 export const setPlz = plzid => ({
   type: SET_PLZ,
@@ -17,19 +19,24 @@ export const setPlz = plzid => ({
   }
 });
 
-export const setStr = (strid, str) => ({
+export const setStr = strid => ({
   type: SET_STR,
   payload: {
-    strid,
-    str
+    strid
   }
 });
 
-export const setGeb = (gebid, geb) => ({
+export const setGeb = gebid => ({
   type: SET_GEB,
   payload: {
-    gebid,
-    geb
+    gebid
+  }
+});
+
+export const setObject = object => ({
+  type: SET_OBJECT,
+  payload: {
+    object
   }
 });
 
@@ -48,6 +55,12 @@ export const fetchStrs = plz => dispatch => {
 export const fetchGebs = str => dispatch => {
   return fetchGeb(str).then(
     fetchCallback("gebs", dispatch, gebSchema, FETCH_GEBS)
+  );
+};
+
+export const fetchConfigs = () => dispatch => {
+  return fetchConfig().then(
+    fetchCallback("configs", dispatch, gebSchema, FETCH_CONFIGS)
   );
 };
 

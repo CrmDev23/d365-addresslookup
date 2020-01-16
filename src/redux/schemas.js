@@ -17,3 +17,9 @@ export const gebSchema = new schema.Entity(
   {},
   { idAttribute: "mat_gebid" }
 );
+
+export const configSchema = new schema.Entity(
+  "configs",
+  {},
+  { idAttribute: "mat_configid" }
+);

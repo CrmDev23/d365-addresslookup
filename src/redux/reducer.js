@@ -4,9 +4,11 @@ import {
   FETCH_PLZS,
   FETCH_STRS,
   FETCH_GEBS,
+  FETCH_CONFIGS,
   SET_PLZ,
   SET_STR,
-  SET_GEB
+  SET_GEB,
+  SET_OBJECT
 } from "./actions";
 
 const initialState = {
@@ -14,14 +16,17 @@ const initialState = {
     plzs: [],
     strs: [],
     gebs: [],
+    configs: [],
     selectedPlz: "",
     selectedStr: "",
-    selectedGeb: ""
+    selectedGeb: "",
+    object: {}
   },
   entities: {
     plzs: {},
     strs: {},
-    gebs: {}
+    gebs: {},
+    configs: {}
   }
 };
 
@@ -72,6 +77,19 @@ const reducer = (state = initialState, action) => {
       });
 
       break;
+    case FETCH_CONFIGS:
+      const {
+        resultEntities: resultEntitiesConfig,
+        entityKey: entityKeyConfig,
+        resultValues: resultValuesConfig
+      } = payload;
+
+      newState = produce(state, draft => {
+        _merge(draft.entities, resultEntitiesConfig);
+        draft.ui[entityKeyConfig] = resultValuesConfig;
+      });
+
+      break;
     case SET_PLZ:
       const { plzid } = payload;
 
@@ -93,6 +111,14 @@ const reducer = (state = initialState, action) => {
 
       newState = produce(state, draft => {
         draft.ui.selectedGeb = gebid;
+      });
+
+      break;
+    case SET_OBJECT:
+      const { object } = payload;
+
+      newState = produce(state, draft => {
+        draft.ui.object = object;
       });
 
       break;
