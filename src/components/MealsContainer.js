@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchPlzs, fetchStrs, fetchGebs } from "../redux/actions";
+import {
+  fetchPlzs,
+  fetchStrs,
+  fetchGebs,
+  fetchConfigs
+} from "../redux/actions";
 import OrtPickerSelect from "./OrtPickerSelect";
 import PlzPickerSelect from "./PlzPickerSelect";
 import StrPickerSelect from "./StrPickerSelect";
@@ -16,8 +21,8 @@ import {
 
 class MealsContainer extends Component {
   componentDidMount() {
-    const { fetchPlzs } = this.props;
-    fetchPlzs();
+    const { fetchPlzs, fetchConfigs } = this.props;
+    fetchConfigs().then(() => fetchPlzs());
   }
 
   componentDidUpdate(prevProps) {
@@ -61,7 +66,7 @@ const mapStateToProps = state => ({
   selectedGeb: selectedGeb(state)
 });
 
-const actionCreators = { fetchPlzs, fetchStrs, fetchGebs };
+const actionCreators = { fetchPlzs, fetchStrs, fetchGebs, fetchConfigs };
 
 export default connect(
   mapStateToProps,

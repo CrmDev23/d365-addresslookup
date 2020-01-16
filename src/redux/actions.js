@@ -60,7 +60,7 @@ export const fetchGebs = str => dispatch => {
 
 export const fetchConfigs = () => dispatch => {
   return fetchConfig().then(
-    fetchCallback("configs", dispatch, gebSchema, FETCH_CONFIGS)
+    fetchCallback("configs", dispatch, configSchema, FETCH_CONFIGS)
   );
 };
 
