@@ -4,7 +4,8 @@ import {
   fetchPlzs,
   fetchStrs,
   fetchGebs,
-  fetchConfigs
+  fetchConfigs,
+  setObject
 } from "../redux/actions";
 import OrtPickerSelect from "./OrtPickerSelect";
 import PlzPickerSelect from "./PlzPickerSelect";
@@ -21,8 +22,17 @@ import {
 
 class MealsContainer extends Component {
   componentDidMount() {
-    const { fetchPlzs, fetchConfigs } = this.props;
+    const { fetchPlzs, fetchConfigs, setObject } = this.props;
     fetchConfigs().then(() => fetchPlzs());
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("Data")) {
+      const dataParams = new URLSearchParams(urlParams.get("Data"));
+      if (dataParams.has("object")) {
+        const object = JSON.parse(dataParams.get("object"));
+        setObject(object);
+      }
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -66,7 +76,13 @@ const mapStateToProps = state => ({
   selectedGeb: selectedGeb(state)
 });
 
-const actionCreators = { fetchPlzs, fetchStrs, fetchGebs, fetchConfigs };
+const actionCreators = {
+  fetchPlzs,
+  fetchStrs,
+  fetchGebs,
+  fetchConfigs,
+  setObject
+};
 
 export default connect(
   mapStateToProps,
