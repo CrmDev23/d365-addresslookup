@@ -21,7 +21,15 @@ export const fetchStr = plz =>
       "mat_strs?$select=mat_str_strbez2l" +
       "&$orderby=mat_str_strbez2l" +
       "&$filter=_mat_plzid_value eq " +
-      plz
+      plz,
+    {
+      transformResponse: axios.defaults.transformResponse.concat(function(
+        data,
+        headers
+      ) {
+        return data.value;
+      })
+    }
   );
 export const fetchGeb = str =>
   axios.get(
@@ -29,6 +37,22 @@ export const fetchGeb = str =>
       "mat_gebs?$select=mat_geb_hnr" +
       "&$orderby=mat_geb_hnr" +
       "&$filter=_mat_strid_value eq " +
-      str
+      str,
+    {
+      transformResponse: axios.defaults.transformResponse.concat(function(
+        data,
+        headers
+      ) {
+        return data.value;
+      })
+    }
   );
-export const fetchConfig = () => axios.get(getClientUrl() + "mat_configs");
+export const fetchConfig = () =>
+  axios.get(getClientUrl() + "mat_configs", {
+    transformResponse: axios.defaults.transformResponse.concat(function(
+      data,
+      headers
+    ) {
+      return data.value;
+    })
+  });
