@@ -7,12 +7,11 @@ export const fetchPlz = () =>
       "mat_plzs?$select=mat_plz_ortbez27,mat_plz_postleitzahl" +
       "&$orderby=mat_plz_ortbez27",
     {
-      transformResponse: axios.defaults.transformResponse.concat(function(
-        data,
-        headers
-      ) {
-        return data.value;
-      })
+      transformResponse: axios.defaults.transformResponse.concat(
+        (data, headers) => {
+          return data.value;
+        }
+      )
     }
   );
 export const fetchStr = plz =>
@@ -23,12 +22,11 @@ export const fetchStr = plz =>
       "&$filter=_mat_plzid_value eq " +
       plz,
     {
-      transformResponse: axios.defaults.transformResponse.concat(function(
-        data,
-        headers
-      ) {
-        return data.value;
-      })
+      transformResponse: axios.defaults.transformResponse.concat(
+        (data, headers) => {
+          return data.value;
+        }
+      )
     }
   );
 export const fetchGeb = str =>
@@ -39,20 +37,18 @@ export const fetchGeb = str =>
       "&$filter=_mat_strid_value eq " +
       str,
     {
-      transformResponse: axios.defaults.transformResponse.concat(function(
-        data,
-        headers
-      ) {
-        return data.value;
-      })
+      transformResponse: axios.defaults.transformResponse.concat(
+        (data, headers) => {
+          return data.value;
+        }
+      )
     }
   );
 export const fetchConfig = () =>
   axios.get(getClientUrl() + "mat_configs", {
-    transformResponse: axios.defaults.transformResponse.concat(function(
-      data,
-      headers
-    ) {
-      return data.value;
-    })
+    transformResponse: axios.defaults.transformResponse.concat(
+      (data, headers) => {
+        return data.value;
+      }
+    )
   });
