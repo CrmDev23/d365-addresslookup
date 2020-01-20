@@ -34,7 +34,7 @@ export const fetchStr = plz =>
 export const fetchGeb = str =>
   axios.get(
     getClientUrl() +
-      "mat_gebs?$select=mat_geb_hnr" +
+      "mat_gebs?$select=mat_geb_hnr,mat_geb_hnra" +
       "&$orderby=mat_geb_hnr" +
       "&$filter=_mat_strid_value eq " +
       str,
