@@ -7,6 +7,7 @@ class App extends Component {
     return (
       <Fragment>
         <MealsShowcase />
+        <MealsShowcase />
       </Fragment>
     );
   }

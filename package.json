@@ -2,6 +2,7 @@
   "name": "normalizr-redux",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mat10.crm4.dynamics.com/WebResources/mat_",
   "dependencies": {
     "axios": "^0.18.0",
     "immer": "^3.2.0",

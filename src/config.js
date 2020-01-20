@@ -19,7 +19,7 @@ export const getContext = () => {
 
 export const getClientUrl = () => {
   if (process.env.NODE_ENV === "production") {
-    return getContext().getClientUrl() + "/api/data/v9.1";
+    return getContext().getClientUrl() + "/api/data/v9.1/";
   } else {
     return "http://localhost:3001/";
   }
