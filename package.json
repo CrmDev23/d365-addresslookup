@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://mat10.crm4.dynamics.com/WebResources/mat_",
   "dependencies": {
+    "@uifabric/icons": "^7.3.1",
     "axios": "^0.18.0",
     "immer": "^3.2.0",
     "immutable": "^4.0.0-rc.12",

@@ -9,28 +9,34 @@ class OrtPickerSelect extends Component {
     super(props);
     this.state = {
       options: [],
-      initialDisplayValue: "Suhr"
+      initialDisplayValue: "Gränichen"
     };
   }
 
   render() {
     const state = this.state;
-    const { value } = this.props;
+    const { value, plzs } = this.props;
+    let optionsKeyValue = plzs.map(plz => {
+      return {
+        key: plz.mat_plzid,
+        text: plz.mat_plz_ortbez27
+      };
+    });
 
     return (
       <span>
         <h2>{value}</h2>
         <ComboBox
-          selectedKey={state.selectedOptionKey}
+          selectedKey={value}
           label="Controlled single-select ComboBox (allowFreeform: T)"
           allowFreeform={true}
           autoComplete="on"
-          options={state.options}
+          options={optionsKeyValue}
           onChange={(event, option, index, value) =>
             this.onChange(event, option, index, value)
           }
-          onResolveOptions={currentOptions => this.getOptions(currentOptions)}
-          text={state.initialDisplayValue}
+          //onResolveOptions={currentOptions => this.getOptions(currentOptions)}
+          //text={optionsKeyValue[0].mat_plz_ortbez27}
         />
       </span>
     );
@@ -41,8 +47,8 @@ class OrtPickerSelect extends Component {
       return this.state.options;
     }
 
-    const { options, value } = this.props;
-    let optionsKeyValue = options.map(plz => {
+    const { plzs, value } = this.props;
+    let optionsKeyValue = plzs.map(plz => {
       return {
         key: plz.mat_plzid,
         text: plz.mat_plz_ortbez27
@@ -51,11 +57,10 @@ class OrtPickerSelect extends Component {
 
     this.setState({
       options: optionsKeyValue,
-      selectedOptionKey: value,
       initialDisplayValue: undefined
     });
 
-    return options;
+    return optionsKeyValue;
   }
 
   onChange(event, option, index, value) {
@@ -63,15 +68,16 @@ class OrtPickerSelect extends Component {
     console.log("_onChanged() is called: option = " + JSON.stringify(option));
     if (option) {
       // User chose an existing option
-      this.setState({
-        selectedOptionKey: option.key
-      });
+      //this.setState({
+      //  selectedOptionKey: option.key
+      //});
+      setPlz(option.key);
     }
   }
 }
 
-const mapStateToProps = (state, { options }) => ({
-  options: getPlzsByIds(state, options)
+const mapStateToProps = (state, { plzIds }) => ({
+  plzs: getPlzsByIds(state, plzIds)
 });
 
 const actionCreators = { setPlz };
