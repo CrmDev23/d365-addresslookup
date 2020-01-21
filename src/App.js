@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import "./App.css";
 import MealsShowcase from "./components/MealsContainer";
 
 class App extends Component {

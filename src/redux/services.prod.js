@@ -5,7 +5,7 @@ export const fetchPlz = () =>
   axios.get(
     getClientUrl() +
       "mat_plzs?$select=mat_plz_ortbez27,mat_plz_postleitzahl" +
-      "&$orderby=mat_plz_ortbez27",
+      "&$orderby=mat_plz_ortbez27,mat_plz_postleitzahl",
     {
       transformResponse: axios.defaults.transformResponse.concat(
         (data, headers) => {

@@ -16,6 +16,10 @@ export const selectedGeb = state => state.ui.selectedGeb;
 
 export const getPlzById = (state, id) => state.entities.plzs[id];
 
+export const getStrById = (state, id) => state.entities.strs[id];
+
+export const getGebById = (state, id) => state.entities.gebs[id];
+
 export const getPlzsByIds = (state, ids) =>
   ids.map(id => state.entities.plzs[id]);
 

@@ -11,6 +11,7 @@ import OrtPickerSelect from "./OrtPickerSelect";
 import PlzPickerSelect from "./PlzPickerSelect";
 import StrPickerSelect from "./StrPickerSelect";
 import GebPickerSelect from "./GebPickerSelect";
+import OkButton from "./OkButton";
 import {
   selectPlzs,
   selectStrs,
@@ -62,6 +63,7 @@ class MealsContainer extends Component {
         <PlzPickerSelect options={plzs} value={selectedPlz} />
         <StrPickerSelect options={strs} value={selectedStr} />
         <GebPickerSelect options={gebs} value={selectedGeb} />
+        <OkButton plzId={selectedPlz} strId={selectedStr} gebId={selectedGeb} />
       </div>
     );
   }
