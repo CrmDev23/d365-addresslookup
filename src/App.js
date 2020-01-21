@@ -1,12 +1,13 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import MealsShowcase from "./components/MealsContainer";
+import { Fabric } from "office-ui-fabric-react/lib/Fabric";
 
 class App extends Component {
   render() {
     return (
-      <Fragment>
+      <Fabric>
         <MealsShowcase />
-      </Fragment>
+      </Fabric>
     );
   }
 }

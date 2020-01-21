@@ -9,6 +9,7 @@
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.15",
     "normalizr": "^3.3.0",
+    "office-ui-fabric-react": "^7.83.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.1",

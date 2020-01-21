@@ -10,9 +10,9 @@ class OkButton extends Component {
 
   render() {
     return (
-      <span>
+      <div>
         <button onClick={this.handleClick}>OK</button>
-      </span>
+      </div>
     );
   }
 }

@@ -58,7 +58,7 @@ class MealsContainer extends Component {
     } = this.props;
 
     return (
-      <div className="meals-container">
+      <div>
         <OrtPickerSelect options={plzs} value={selectedPlz} />
         <PlzPickerSelect options={plzs} value={selectedPlz} />
         <StrPickerSelect options={strs} value={selectedStr} />
