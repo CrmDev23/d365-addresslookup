@@ -19,7 +19,7 @@ class OrtPickerSelect extends Component {
         <h2>{value}</h2>
         <ComboBox
           selectedKey={value}
-          label="Controlled single-select ComboBox (allowFreeform: T)"
+          label="Ort"
           allowFreeform={true}
           autoComplete="on"
           options={optionsKeyValue}
@@ -33,7 +33,6 @@ class OrtPickerSelect extends Component {
 
   onChange(event, option, index, value) {
     const { setPlz } = this.props;
-    console.log("_onChanged() is called: option = " + JSON.stringify(option));
     if (option) {
       setPlz(option.key);
     }
