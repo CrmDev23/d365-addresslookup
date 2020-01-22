@@ -7,10 +7,10 @@ import { ComboBox } from "office-ui-fabric-react/lib/ComboBox";
 class StrPickerSelect extends Component {
   render() {
     const { options, value } = this.props;
-    let optionsKeyValue = options.map(plz => {
+    let optionsKeyValue = options.map(str => {
       return {
-        key: plz.mat_strid,
-        text: plz.mat_str_strbez2l
+        key: str.mat_strid,
+        text: str.mat_str_strbez2l
       };
     });
 
