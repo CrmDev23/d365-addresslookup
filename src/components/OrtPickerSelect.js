@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setPlz } from "../redux/actions";
 import { getPlzsByIds } from "../redux/selectors";
-import { ComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
 
 class OrtPickerSelect extends Component {
   render() {
@@ -17,7 +17,7 @@ class OrtPickerSelect extends Component {
     return (
       <span>
         <h2>{value}</h2>
-        <ComboBox
+        <VirtualizedComboBox
           selectedKey={value}
           label="Ort"
           allowFreeform={true}
@@ -26,6 +26,7 @@ class OrtPickerSelect extends Component {
           onChange={(event, option, index, value) =>
             this.onChange(event, option, index, value)
           }
+          useComboBoxAsMenuWidth={true}
         />
       </span>
     );

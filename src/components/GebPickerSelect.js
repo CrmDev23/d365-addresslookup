@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setGeb } from "../redux/actions";
 import { getGebsByIds } from "../redux/selectors";
-import { ComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
 
 class GebPickerSelect extends Component {
   render() {
@@ -23,7 +23,7 @@ class GebPickerSelect extends Component {
     return (
       <span>
         <h2>{value}</h2>
-        <ComboBox
+        <VirtualizedComboBox
           selectedKey={value}
           label="Nummer"
           allowFreeform={true}
@@ -32,6 +32,7 @@ class GebPickerSelect extends Component {
           onChange={(event, option, index, value) =>
             this.onChange(event, option, index, value)
           }
+          useComboBoxAsMenuWidth={true}
         />
       </span>
     );
