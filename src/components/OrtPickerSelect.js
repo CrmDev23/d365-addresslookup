@@ -6,8 +6,8 @@ import { ComboBox } from "office-ui-fabric-react/lib/ComboBox";
 
 class OrtPickerSelect extends Component {
   render() {
-    const { value, plzs } = this.props;
-    let optionsKeyValue = plzs.map(plz => {
+    const { options, value } = this.props;
+    let optionsKeyValue = options.map(plz => {
       return {
         key: plz.mat_plzid,
         text: plz.mat_plz_ortbez27
@@ -39,8 +39,8 @@ class OrtPickerSelect extends Component {
   }
 }
 
-const mapStateToProps = (state, { plzIds }) => ({
-  plzs: getPlzsByIds(state, plzIds)
+const mapStateToProps = (state, { options }) => ({
+  options: getPlzsByIds(state, options)
 });
 
 const actionCreators = { setPlz };

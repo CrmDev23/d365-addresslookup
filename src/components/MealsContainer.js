@@ -59,7 +59,7 @@ class MealsContainer extends Component {
 
     return (
       <div>
-        <OrtPickerSelect plzIds={plzs} value={selectedPlz} />
+        <OrtPickerSelect options={plzs} value={selectedPlz} />
         <PlzPickerSelect options={plzs} value={selectedPlz} />
         <StrPickerSelect options={strs} value={selectedStr} />
         <GebPickerSelect options={gebs} value={selectedGeb} />
