@@ -12,6 +12,7 @@ import PlzPickerSelect from "./PlzPickerSelect";
 import StrPickerSelect from "./StrPickerSelect";
 import GebPickerSelect from "./GebPickerSelect";
 import OkButton from "./OkButton";
+import CancelButton from "./CancelButton";
 import {
   selectPlzs,
   selectStrs,
@@ -21,6 +22,8 @@ import {
   selectedGeb
 } from "../redux/selectors";
 import { Stack } from "office-ui-fabric-react/lib/Stack";
+import { Text } from "office-ui-fabric-react/lib/Text";
+import { FontWeights } from "office-ui-fabric-react";
 
 class MealsContainer extends Component {
   componentDidMount() {
@@ -58,19 +61,31 @@ class MealsContainer extends Component {
       selectedGeb
     } = this.props;
     const stackTokens = { childrenGap: 20 };
+    const boldStyle = { root: { fontWeight: FontWeights.semibold } };
     return (
-      <Stack horizontalAlign="center">
-        <Stack style={{ width: 300 }} tokens={stackTokens}>
-          <OrtPickerSelect options={plzs} value={selectedPlz} />
-          <PlzPickerSelect options={plzs} value={selectedPlz} />
-          <StrPickerSelect options={strs} value={selectedStr} />
-          <GebPickerSelect options={gebs} value={selectedGeb} />
-          <div />
-          <OkButton
-            plzId={selectedPlz}
-            strId={selectedStr}
-            gebId={selectedGeb}
-          />
+      <Stack style={{ width: 200 }} orizontalAlign="center">
+        <Stack tokens={stackTokens}>
+          <Text variant="large" styles={boldStyle}>
+            Adresse auswählen
+          </Text>
+          <Stack>
+            <OrtPickerSelect options={plzs} value={selectedPlz} />
+            <PlzPickerSelect options={plzs} value={selectedPlz} />
+            <StrPickerSelect options={strs} value={selectedStr} />
+            <GebPickerSelect options={gebs} value={selectedGeb} />
+          </Stack>
+          <Stack horizontalAlign="center" horizontal tokens={stackTokens}>
+            <OkButton
+              plzId={selectedPlz}
+              strId={selectedStr}
+              gebId={selectedGeb}
+            />
+            <CancelButton
+              plzId={selectedPlz}
+              strId={selectedStr}
+              gebId={selectedGeb}
+            />
+          </Stack>
         </Stack>
       </Stack>
     );
