@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setGeb } from "../redux/actions";
 import { getGebsByIds } from "../redux/selectors";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import { Stack } from "office-ui-fabric-react/lib/Stack";
 
 class GebPickerSelect extends Component {
   render() {
@@ -21,7 +22,7 @@ class GebPickerSelect extends Component {
     });
 
     return (
-      <span>
+      <Stack gap={10}>
         <h2>{value}</h2>
         <VirtualizedComboBox
           selectedKey={value}
@@ -34,7 +35,7 @@ class GebPickerSelect extends Component {
           }
           useComboBoxAsMenuWidth={true}
         />
-      </span>
+      </Stack>
     );
   }
 

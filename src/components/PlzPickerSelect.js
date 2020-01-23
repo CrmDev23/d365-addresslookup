@@ -4,6 +4,7 @@ import { setPlz } from "../redux/actions";
 import { getPlzsByIds } from "../redux/selectors";
 import _sortBy from "lodash/sortBy";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import { Stack } from "office-ui-fabric-react/lib/Stack";
 
 class PlzPickerSelect extends Component {
   render() {
@@ -17,7 +18,7 @@ class PlzPickerSelect extends Component {
     });
 
     return (
-      <span>
+      <Stack gap={10}>
         <h2>{value}</h2>
         <VirtualizedComboBox
           selectedKey={value}
@@ -30,7 +31,7 @@ class PlzPickerSelect extends Component {
           }
           useComboBoxAsMenuWidth={true}
         />
-      </span>
+      </Stack>
     );
   }
 

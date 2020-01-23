@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setStr } from "../redux/actions";
 import { getStrsByIds } from "../redux/selectors";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import { Stack } from "office-ui-fabric-react/lib/Stack";
 
 class StrPickerSelect extends Component {
   render() {
@@ -15,7 +16,7 @@ class StrPickerSelect extends Component {
     });
 
     return (
-      <span>
+      <Stack gap={10}>
         <h2>{value}</h2>
         <VirtualizedComboBox
           selectedKey={value}
@@ -28,7 +29,7 @@ class StrPickerSelect extends Component {
           }
           useComboBoxAsMenuWidth={true}
         />
-      </span>
+      </Stack>
     );
   }
 

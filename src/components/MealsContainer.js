@@ -57,15 +57,20 @@ class MealsContainer extends Component {
       selectedStr,
       selectedGeb
     } = this.props;
-
     return (
-      <div>
-        <OrtPickerSelect options={plzs} value={selectedPlz} />
-        <PlzPickerSelect options={plzs} value={selectedPlz} />
-        <StrPickerSelect options={strs} value={selectedStr} />
-        <GebPickerSelect options={gebs} value={selectedGeb} />
-        <OkButton plzId={selectedPlz} strId={selectedStr} gebId={selectedGeb} />
-      </div>
+      <Stack horizontalAlign="center">
+        <Stack style={{ width: 400 }} gap={25}>
+          <OrtPickerSelect options={plzs} value={selectedPlz} />
+          <PlzPickerSelect options={plzs} value={selectedPlz} />
+          <StrPickerSelect options={strs} value={selectedStr} />
+          <GebPickerSelect options={gebs} value={selectedGeb} />
+          <OkButton
+            plzId={selectedPlz}
+            strId={selectedStr}
+            gebId={selectedGeb}
+          />
+        </Stack>
+      </Stack>
     );
   }
 }
