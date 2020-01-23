@@ -57,14 +57,15 @@ class MealsContainer extends Component {
       selectedStr,
       selectedGeb
     } = this.props;
-    const stackTokens = { childrenGap: 25 };
+    const stackTokens = { childrenGap: 20 };
     return (
       <Stack horizontalAlign="center">
-        <Stack style={{ width: 400 }} stackTokens={stackTokens}>
+        <Stack style={{ width: 300 }} tokens={stackTokens}>
           <OrtPickerSelect options={plzs} value={selectedPlz} />
           <PlzPickerSelect options={plzs} value={selectedPlz} />
           <StrPickerSelect options={strs} value={selectedStr} />
           <GebPickerSelect options={gebs} value={selectedGeb} />
+          <div />
           <OkButton
             plzId={selectedPlz}
             strId={selectedStr}

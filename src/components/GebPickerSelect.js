@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { setGeb } from "../redux/actions";
 import { getGebsByIds } from "../redux/selectors";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
-import { Stack } from "office-ui-fabric-react/lib/Stack";
 
 class GebPickerSelect extends Component {
   render() {
@@ -20,21 +19,18 @@ class GebPickerSelect extends Component {
         text: optionText
       };
     });
-    const stackTokens = { childrenGap: 10 };
     return (
-      <Stack stackTokens={stackTokens}>
-        <VirtualizedComboBox
-          selectedKey={value}
-          label="Nummer"
-          allowFreeform={true}
-          autoComplete="on"
-          options={optionsKeyValue}
-          onChange={(event, option, index, value) =>
-            this.onChange(event, option, index, value)
-          }
-          useComboBoxAsMenuWidth={true}
-        />
-      </Stack>
+      <VirtualizedComboBox
+        selectedKey={value}
+        label="Nummer"
+        allowFreeform={true}
+        autoComplete="on"
+        options={optionsKeyValue}
+        onChange={(event, option, index, value) =>
+          this.onChange(event, option, index, value)
+        }
+        useComboBoxAsMenuWidth={true}
+      />
     );
   }
 

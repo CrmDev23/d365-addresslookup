@@ -11,9 +11,10 @@ class OkButton extends Component {
   };
 
   render() {
-    const stackTokens = { childrenGap: 10 };
+    const stackTokens = { childrenGap: 70 };
     return (
-      <Stack stackTokens={stackTokens}>
+      <Stack horizontalAlign="center" horizontal tokens={stackTokens}>
+        <PrimaryButton text="OK" onClick={this.handleClick} />
         <PrimaryButton text="OK" onClick={this.handleClick} />
       </Stack>
     );

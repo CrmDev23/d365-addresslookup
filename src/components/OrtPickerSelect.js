@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { setPlz } from "../redux/actions";
 import { getPlzsByIds } from "../redux/selectors";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
-import { Stack } from "office-ui-fabric-react/lib/Stack";
 
 class OrtPickerSelect extends Component {
   render() {
@@ -14,21 +13,18 @@ class OrtPickerSelect extends Component {
         text: plz.mat_plz_ortbez27
       };
     });
-    const stackTokens = { childrenGap: 10 };
     return (
-      <Stack stackTokens={stackTokens}>
-        <VirtualizedComboBox
-          selectedKey={value}
-          label="Ort"
-          allowFreeform={true}
-          autoComplete="on"
-          options={optionsKeyValue}
-          onChange={(event, option, index, value) =>
-            this.onChange(event, option, index, value)
-          }
-          useComboBoxAsMenuWidth={true}
-        />
-      </Stack>
+      <VirtualizedComboBox
+        selectedKey={value}
+        label="Ort"
+        allowFreeform={true}
+        autoComplete="on"
+        options={optionsKeyValue}
+        onChange={(event, option, index, value) =>
+          this.onChange(event, option, index, value)
+        }
+        useComboBoxAsMenuWidth={true}
+      />
     );
   }
 
