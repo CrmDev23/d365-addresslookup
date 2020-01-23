@@ -20,6 +20,7 @@ import {
   selectedStr,
   selectedGeb
 } from "../redux/selectors";
+import { Stack } from "office-ui-fabric-react/lib/Stack";
 
 class MealsContainer extends Component {
   componentDidMount() {
