@@ -14,10 +14,9 @@ class OrtPickerSelect extends Component {
         text: plz.mat_plz_ortbez27
       };
     });
-
+    const stackTokens = { childrenGap: 10 };
     return (
-      <Stack gap={10}>
-        <h2>{value}</h2>
+      <Stack stackTokens={stackTokens}>
         <VirtualizedComboBox
           selectedKey={value}
           label="Ort"

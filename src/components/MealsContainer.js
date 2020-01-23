@@ -57,9 +57,10 @@ class MealsContainer extends Component {
       selectedStr,
       selectedGeb
     } = this.props;
+    const stackTokens = { childrenGap: 25 };
     return (
       <Stack horizontalAlign="center">
-        <Stack style={{ width: 400 }} gap={25}>
+        <Stack style={{ width: 400 }} stackTokens={stackTokens}>
           <OrtPickerSelect options={plzs} value={selectedPlz} />
           <PlzPickerSelect options={plzs} value={selectedPlz} />
           <StrPickerSelect options={strs} value={selectedStr} />

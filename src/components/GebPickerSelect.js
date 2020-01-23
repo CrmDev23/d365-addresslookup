@@ -20,10 +20,9 @@ class GebPickerSelect extends Component {
         text: optionText
       };
     });
-
+    const stackTokens = { childrenGap: 10 };
     return (
-      <Stack gap={10}>
-        <h2>{value}</h2>
+      <Stack stackTokens={stackTokens}>
         <VirtualizedComboBox
           selectedKey={value}
           label="Nummer"

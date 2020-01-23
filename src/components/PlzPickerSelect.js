@@ -16,10 +16,9 @@ class PlzPickerSelect extends Component {
         text: plz.mat_plz_postleitzahl
       };
     });
-
+    const stackTokens = { childrenGap: 10 };
     return (
-      <Stack gap={10}>
-        <h2>{value}</h2>
+      <Stack stackTokens={stackTokens}>
         <VirtualizedComboBox
           selectedKey={value}
           label="PLZ"

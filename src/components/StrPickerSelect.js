@@ -14,10 +14,9 @@ class StrPickerSelect extends Component {
         text: str.mat_str_strbez2l
       };
     });
-
+    const stackTokens = { childrenGap: 10 };
     return (
-      <Stack gap={10}>
-        <h2>{value}</h2>
+      <Stack stackTokens={stackTokens}>
         <VirtualizedComboBox
           selectedKey={value}
           label="Strasse"
