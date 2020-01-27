@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPlzById, getStrById, getGebById } from "../redux/selectors";
 import { PrimaryButton } from "office-ui-fabric-react/lib/Button";
-import { Stack } from "office-ui-fabric-react/lib/Stack";
 
 class OkButton extends Component {
   handleClick = () => {
@@ -11,7 +10,6 @@ class OkButton extends Component {
   };
 
   render() {
-    const stackTokens = { childrenGap: 20 };
     return <PrimaryButton text="OK" onClick={this.handleClick} />;
   }
 }
