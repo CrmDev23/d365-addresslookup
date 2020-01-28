@@ -8,7 +8,7 @@ import {
   SET_PLZ,
   SET_STR,
   SET_GEB,
-  SET_OBJECT
+  SET_FIELDNAMES
 } from "./actions";
 
 const initialState = {
@@ -20,7 +20,7 @@ const initialState = {
     selectedPlz: "",
     selectedStr: "",
     selectedGeb: "",
-    object: {}
+    fieldnames: {}
   },
   entities: {
     plzs: {},
@@ -114,11 +114,11 @@ const reducer = (state = initialState, action) => {
       });
 
       break;
-    case SET_OBJECT:
-      const { object } = payload;
+    case SET_FIELDNAMES:
+      const { fieldnames } = payload;
 
       newState = produce(state, draft => {
-        draft.ui.object = object;
+        draft.ui.fieldnames = fieldnames;
       });
 
       break;

@@ -5,7 +5,7 @@ import {
   fetchStrs,
   fetchGebs,
   fetchConfigs,
-  setObject
+  setFieldnames
 } from "../redux/actions";
 import OrtPickerSelect from "./OrtPickerSelect";
 import PlzPickerSelect from "./PlzPickerSelect";
@@ -29,15 +29,15 @@ import { Overlay } from "office-ui-fabric-react";
 
 class MealsContainer extends Component {
   componentDidMount() {
-    const { fetchPlzs, fetchConfigs, setObject } = this.props;
+    const { fetchPlzs, fetchConfigs, setFieldnames } = this.props;
     fetchConfigs().then(() => fetchPlzs());
 
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("Data")) {
       const dataParams = new URLSearchParams(urlParams.get("Data"));
-      if (dataParams.has("object")) {
-        const object = JSON.parse(dataParams.get("object"));
-        setObject(object);
+      if (dataParams.has("fieldnames")) {
+        const fieldnames = JSON.parse(dataParams.get("fieldnames"));
+        setFieldnames(fieldnames);
       }
     }
   }
@@ -131,7 +131,7 @@ const actionCreators = {
   fetchStrs,
   fetchGebs,
   fetchConfigs,
-  setObject
+  setFieldnames
 };
 
 export default connect(

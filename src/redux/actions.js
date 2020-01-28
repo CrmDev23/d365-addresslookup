@@ -10,7 +10,7 @@ export const FETCH_CONFIGS = "FETCH_CONFIGS";
 export const SET_PLZ = "SET_PLZ";
 export const SET_STR = "SET_STR";
 export const SET_GEB = "SET_GEB";
-export const SET_OBJECT = "SET_OBJECT";
+export const SET_FIELDNAMES = "SET_FIELDNAMES";
 
 export const setPlz = plzid => ({
   type: SET_PLZ,
@@ -33,10 +33,10 @@ export const setGeb = gebid => ({
   }
 });
 
-export const setObject = object => ({
-  type: SET_OBJECT,
+export const setFieldnames = fieldnames => ({
+  type: SET_FIELDNAMES,
   payload: {
-    object
+    fieldnames
   }
 });
 
