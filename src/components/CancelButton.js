@@ -10,7 +10,18 @@ class CancelButton extends Component {
   };
 
   render() {
-    return <PrimaryButton text="Cancel" onClick={this.handleClick} />;
+    const buttonStyles = {
+      root: {
+        width: 100
+      }
+    };
+    return (
+      <PrimaryButton
+        styles={buttonStyles}
+        text="Cancel"
+        onClick={this.handleClick}
+      />
+    );
   }
 }
 
@@ -20,7 +31,4 @@ const mapStateToProps = (state, { plzId, strId, gebId }) => ({
   geb: getGebById(state, gebId)
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(CancelButton);
+export default connect(mapStateToProps)(CancelButton);

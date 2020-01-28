@@ -71,6 +71,7 @@ class MealsContainer extends Component {
         display: "flex"
       }
     };
+
     const innerStackTokens = { childrenGap: 5, padding: 10 };
     const buttonStackTokens = { childrenGap: 100, padding: 20 };
     const overlayStackTokens = { padding: 180 };

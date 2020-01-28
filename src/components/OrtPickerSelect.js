@@ -7,11 +7,25 @@ import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
 class OrtPickerSelect extends Component {
   render() {
     const { options, value } = this.props;
-    let optionsKeyValue = options.map(plz => {
-      return {
-        key: plz.mat_plzid,
-        text: plz.mat_plz_ortbez27
-      };
+    let optionsKeyValue = options.map((plz, index, array) => {
+      // If city names are equal, add plz in parentesis
+      if (
+        (index > 0 &&
+          array[index].mat_plz_ortbez27 ===
+            array[index - 1].mat_plz_ortbez27) ||
+        (array.length > index + 1 &&
+          array[index].mat_plz_ortbez27 === array[index + 1].mat_plz_ortbez27)
+      ) {
+        return {
+          key: plz.mat_plzid,
+          text: plz.mat_plz_ortbez27 + " (" + plz.mat_plz_postleitzahl + ")"
+        };
+      } else {
+        return {
+          key: plz.mat_plzid,
+          text: plz.mat_plz_ortbez27
+        };
+      }
     });
     return (
       <VirtualizedComboBox

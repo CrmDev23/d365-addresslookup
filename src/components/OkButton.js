@@ -6,11 +6,24 @@ import { PrimaryButton } from "office-ui-fabric-react/lib/Button";
 class OkButton extends Component {
   handleClick = () => {
     const { plz, str, geb } = this.props;
+    // eslint-disable-next-line no-restricted-globals
+    parent.Xrm.Page.data.entity.attributes.get("new_attribute").getValue();
     alert(plz + str + geb);
   };
 
   render() {
-    return <PrimaryButton text="OK" onClick={this.handleClick} />;
+    const buttonStyles = {
+      root: {
+        width: 100
+      }
+    };
+    return (
+      <PrimaryButton
+        styles={buttonStyles}
+        text="OK"
+        onClick={this.handleClick}
+      />
+    );
   }
 }
 
@@ -20,7 +33,4 @@ const mapStateToProps = (state, { plzId, strId, gebId }) => ({
   geb: getGebById(state, gebId)
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(OkButton);
+export default connect(mapStateToProps)(OkButton);
