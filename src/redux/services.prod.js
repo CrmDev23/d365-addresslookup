@@ -1,18 +1,26 @@
 import axios from "axios";
 import { getClientUrl } from "../config";
 
+const options = {
+  headers: {
+    Accept: "application/json",
+    "OData-MaxVersion": "4.0",
+    "OData-Version": "4.0",
+    "If-None-Match": "null"
+  },
+  transformResponse: axios.defaults.transformResponse.concat(
+    (data, headers) => {
+      return data.value;
+    }
+  )
+};
+
 export const fetchPlz = () =>
   axios.get(
     getClientUrl() +
       "mat_plzs?$select=mat_plz_ortbez27,mat_plz_postleitzahl" +
       "&$orderby=mat_plz_ortbez27,mat_plz_postleitzahl",
-    {
-      transformResponse: axios.defaults.transformResponse.concat(
-        (data, headers) => {
-          return data.value;
-        }
-      )
-    }
+    options
   );
 export const fetchStr = plz =>
   axios.get(
@@ -21,13 +29,7 @@ export const fetchStr = plz =>
       "&$orderby=mat_str_strbez2l" +
       "&$filter=_mat_plzid_value eq " +
       plz,
-    {
-      transformResponse: axios.defaults.transformResponse.concat(
-        (data, headers) => {
-          return data.value;
-        }
-      )
-    }
+    options
   );
 export const fetchGeb = str =>
   axios.get(
@@ -36,19 +38,7 @@ export const fetchGeb = str =>
       "&$orderby=mat_geb_hnr" +
       "&$filter=_mat_strid_value eq " +
       str,
-    {
-      transformResponse: axios.defaults.transformResponse.concat(
-        (data, headers) => {
-          return data.value;
-        }
-      )
-    }
+    options
   );
 export const fetchConfig = () =>
-  axios.get(getClientUrl() + "mat_configs", {
-    transformResponse: axios.defaults.transformResponse.concat(
-      (data, headers) => {
-        return data.value;
-      }
-    )
-  });
+  axios.get(getClientUrl() + "mat_configs", options);
