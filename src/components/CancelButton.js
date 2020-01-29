@@ -5,8 +5,7 @@ import { PrimaryButton } from "office-ui-fabric-react/lib/Button";
 
 class CancelButton extends Component {
   handleClick = () => {
-    const { plz, str, geb } = this.props;
-    alert(plz + str + geb);
+    window.close();
   };
 
   render() {

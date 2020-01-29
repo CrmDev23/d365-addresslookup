@@ -19,18 +19,16 @@ class OkButton extends Component {
     } else if (geb.mat_geb_hnr) {
       gebText = geb.mat_geb_hnr.toString();
     }
-    // eslint-disable-next-line no-restricted-globals
-    parent.Xrm.Page.data.entity.attributes
-      .get(plz_fieldname)
-      .setValue(plz.mat_plz_postleitzahl);
-    // eslint-disable-next-line no-restricted-globals
-    parent.Xrm.Page.data.entity.attributes
-      .get(city_fieldname)
-      .setValue(str.mat_plz_ortbez27);
-    // eslint-disable-next-line no-restricted-globals
-    parent.Xrm.Page.data.entity.attributes
-      .get(str_fieldname)
-      .setValue(str.mat_str_strbez2l + " " + gebText);
+    window.parent.parent.opener.Xrm.Page.getAttribute(plz_fieldname).setValue(
+      plz.mat_plz_postleitzahl
+    );
+    window.parent.parent.opener.Xrm.Page.getAttribute(city_fieldname).setValue(
+      plz.mat_plz_ortbez27
+    );
+    window.parent.parent.opener.Xrm.Page.getAttribute(str_fieldname).setValue(
+      str.mat_str_strbez2l + " " + gebText
+    );
+    window.close();
   };
 
   render() {
