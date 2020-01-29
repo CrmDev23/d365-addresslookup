@@ -20,7 +20,10 @@ const initialState = {
     selectedPlz: "",
     selectedStr: "",
     selectedGeb: "",
-    fieldnames: {}
+    fieldnames: {},
+    importSeqPlz: 0,
+    importSeqStr: 0,
+    importSeqGeb: 0
   },
   entities: {
     plzs: {},
@@ -87,6 +90,13 @@ const reducer = (state = initialState, action) => {
       newState = produce(state, draft => {
         _merge(draft.entities, resultEntitiesConfig);
         draft.ui[entityKeyConfig] = resultValuesConfig;
+        draft.ui.importSeqPlz = resultEntitiesConfig.configs[
+          resultValuesConfig[0]
+        ].mat_plzimportsequencenumber
+          ? resultEntitiesConfig.configs[resultValuesConfig[0]]
+              .mat_plzimportsequencenumber
+          : resultEntitiesConfig.configs[resultValuesConfig[0]]
+              .mat_plzimportsequencenumber_next;
       });
 
       break;

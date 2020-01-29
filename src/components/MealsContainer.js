@@ -33,12 +33,9 @@ class MealsContainer extends Component {
     fetchConfigs().then(() => fetchPlzs());
 
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has("Data")) {
-      const dataParams = new URLSearchParams(urlParams.get("Data"));
-      if (dataParams.has("fieldnames")) {
-        const fieldnames = JSON.parse(dataParams.get("fieldnames"));
-        setFieldnames(fieldnames);
-      }
+    if (urlParams.has("data")) {
+      const fieldnames = JSON.parse(urlParams.get("data"));
+      setFieldnames(fieldnames);
     }
   }
 
@@ -73,7 +70,7 @@ class MealsContainer extends Component {
     };
 
     const innerStackTokens = { childrenGap: 5, padding: 10 };
-    const buttonStackTokens = { childrenGap: 100, padding: 20 };
+    const buttonStackTokens = { childrenGap: 50, padding: 20 };
     const overlayStackTokens = { padding: 180 };
 
     return (
