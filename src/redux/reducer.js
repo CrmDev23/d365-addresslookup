@@ -90,13 +90,20 @@ const reducer = (state = initialState, action) => {
       newState = produce(state, draft => {
         _merge(draft.entities, resultEntitiesConfig);
         draft.ui[entityKeyConfig] = resultValuesConfig;
-        draft.ui.importSeqPlz = resultEntitiesConfig.configs[
+        let config = resultEntitiesConfig.configs[resultValuesConfig[0]];
+        draft.ui.importSeqPlz = config.mat_plzimportsequencenumber
+          ? config.mat_plzimportsequencenumber
+          : config.mat_plzimportsequencenumber_next;
+        draft.ui.importSeqStr = resultEntitiesConfig.configs[
           resultValuesConfig[0]
-        ].mat_plzimportsequencenumber
-          ? resultEntitiesConfig.configs[resultValuesConfig[0]]
-              .mat_plzimportsequencenumber
-          : resultEntitiesConfig.configs[resultValuesConfig[0]]
-              .mat_plzimportsequencenumber_next;
+        ].mat_strimportsequencenumber
+          ? config.mat_strimportsequencenumber
+          : config.mat_strimportsequencenumber_next;
+        draft.ui.importSeqGeb = resultEntitiesConfig.configs[
+          resultValuesConfig[0]
+        ].mat_gebimportsequencenumber
+          ? config.mat_gebimportsequencenumber
+          : config.mat_gebimportsequencenumber_next;
       });
 
       break;
