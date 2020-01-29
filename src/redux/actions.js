@@ -40,20 +40,20 @@ export const setFieldnames = fieldnames => ({
   }
 });
 
-export const fetchPlzs = () => dispatch => {
-  return fetchPlz().then(
+export const fetchPlzs = importSeqPlz => dispatch => {
+  return fetchPlz(importSeqPlz).then(
     fetchCallback("plzs", dispatch, plzSchema, FETCH_PLZS)
   );
 };
 
-export const fetchStrs = plz => dispatch => {
-  return fetchStr(plz).then(
+export const fetchStrs = (plz, importSeqStr) => dispatch => {
+  return fetchStr(plz, importSeqStr).then(
     fetchCallback("strs", dispatch, strSchema, FETCH_STRS)
   );
 };
 
-export const fetchGebs = str => dispatch => {
-  return fetchGeb(str).then(
+export const fetchGebs = (str, importSeqGeb) => dispatch => {
+  return fetchGeb(str, importSeqGeb).then(
     fetchCallback("gebs", dispatch, gebSchema, FETCH_GEBS)
   );
 };

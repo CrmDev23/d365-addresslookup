@@ -29,8 +29,8 @@ import { Overlay } from "office-ui-fabric-react";
 
 class MealsContainer extends Component {
   componentDidMount() {
-    const { fetchPlzs, fetchConfigs, setFieldnames } = this.props;
-    fetchConfigs().then(() => fetchPlzs());
+    const { fetchConfigs, setFieldnames } = this.props;
+    fetchConfigs();
 
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("data")) {
@@ -40,13 +40,24 @@ class MealsContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.selectedPlz !== this.props.selectedPlz) {
-      const { fetchStrs, selectedPlz } = this.props;
-      fetchStrs(selectedPlz);
+    if (prevProps.importSeqPlz !== this.props.importSeqPlz) {
+      const { fetchPlzs, importSeqPlz } = this.props;
+      fetchPlzs(importSeqPlz);
     }
-    if (prevProps.selectedStr !== this.props.selectedStr) {
-      const { fetchGebs, selectedStr } = this.props;
-      fetchGebs(selectedStr);
+    fetchPlzs(this.props.importSeqPlz);
+    if (
+      prevProps.selectedPlz !== this.props.selectedPlz ||
+      prevProps.importSeqStr !== this.props.importSeqStr
+    ) {
+      const { fetchStrs, selectedPlz, importSeqStr } = this.props;
+      fetchStrs(selectedPlz, importSeqStr);
+    }
+    if (
+      prevProps.selectedStr !== this.props.selectedStr ||
+      prevProps.importSeqGeb !== this.props.importSeqGeb
+    ) {
+      const { fetchGebs, selectedStr, importSeqGeb } = this.props;
+      fetchGebs(selectedStr, importSeqGeb);
     }
   }
 
@@ -120,7 +131,10 @@ const mapStateToProps = state => ({
   gebs: selectGebs(state),
   selectedPlz: selectedPlz(state),
   selectedStr: selectedStr(state),
-  selectedGeb: selectedGeb(state)
+  selectedGeb: selectedGeb(state),
+  importSeqPlz: state.ui.importSeqPlz,
+  importSeqStr: state.ui.importSeqStr,
+  importSeqGeb: state.ui.importSeqGeb
 });
 
 const actionCreators = {
