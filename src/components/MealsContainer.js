@@ -44,17 +44,18 @@ class MealsContainer extends Component {
       const { fetchPlzs, importSeqPlz } = this.props;
       fetchPlzs(importSeqPlz);
     }
-    fetchPlzs(this.props.importSeqPlz);
     if (
-      prevProps.selectedPlz !== this.props.selectedPlz ||
-      prevProps.importSeqStr !== this.props.importSeqStr
+      this.props.selectedPlz !== "" &&
+      (prevProps.selectedPlz !== this.props.selectedPlz ||
+        prevProps.importSeqStr !== this.props.importSeqStr)
     ) {
       const { fetchStrs, selectedPlz, importSeqStr } = this.props;
       fetchStrs(selectedPlz, importSeqStr);
     }
     if (
-      prevProps.selectedStr !== this.props.selectedStr ||
-      prevProps.importSeqGeb !== this.props.importSeqGeb
+      this.props.selectedStr !== "" &&
+      (prevProps.selectedStr !== this.props.selectedStr ||
+        prevProps.importSeqGeb !== this.props.importSeqGeb)
     ) {
       const { fetchGebs, selectedStr, importSeqGeb } = this.props;
       fetchGebs(selectedStr, importSeqGeb);
