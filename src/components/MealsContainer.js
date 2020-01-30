@@ -26,9 +26,37 @@ import { Text } from "office-ui-fabric-react/lib/Text";
 import { FontWeights } from "office-ui-fabric-react";
 import { Spinner, SpinnerSize } from "office-ui-fabric-react/lib/Spinner";
 import { Overlay } from "office-ui-fabric-react";
+import intl from "react-intl-universal";
+import { getUserLocal } from "../config";
 
 class MealsContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { initDone: false };
+  }
+
+  getLocale = locale => {
+    return import("../locales/" + locale);
+  };
+
+  loadLocales = () => {
+    getUserLocal().then(userLocal => {
+      this.getLocale(userLocal).then(localData => {
+        intl
+          .init({
+            currentLocale: userLocal,
+            locales: { [userLocal]: localData }
+          })
+          .then(() => {
+            this.setState({ initDone: true });
+          });
+      });
+    });
+  };
+
   componentDidMount() {
+    this.loadLocales();
+
     const { fetchConfigs, setFieldnames } = this.props;
     fetchConfigs();
 
@@ -89,42 +117,48 @@ class MealsContainer extends Component {
     const overlayStackTokens = { padding: 180 };
 
     return (
-      <Stack>
-        <Stack tokens={innerStackTokens}>
-          <Text variant="large" styles={titleBoldStyle}>
-            Adresse auswählen
-          </Text>
+      this.state.initDone && (
+        <Stack>
+          <Stack tokens={innerStackTokens}>
+            <Text variant="large" styles={titleBoldStyle}>
+              {intl.get("SELECT_ADDRESS")}
+            </Text>
+          </Stack>
+          <Stack tokens={innerStackTokens}>
+            <OrtPickerSelect options={plzs} value={selectedPlz} />
+            <PlzPickerSelect options={plzs} value={selectedPlz} />
+            <StrPickerSelect options={strs} value={selectedStr} />
+            <GebPickerSelect options={gebs} value={selectedGeb} />
+          </Stack>
+          <Stack
+            horizontal
+            tokens={buttonStackTokens}
+            styles={buttonStackStyles}
+          >
+            <OkButton
+              plzId={selectedPlz}
+              strId={selectedStr}
+              gebId={selectedGeb}
+            />
+            <CancelButton
+              plzId={selectedPlz}
+              strId={selectedStr}
+              gebId={selectedGeb}
+            />
+          </Stack>
+          {(plzs.length === 0 || strs.length === 0 || gebs.length === 0) && (
+            <Overlay>
+              <Stack
+                horizontal
+                tokens={overlayStackTokens}
+                styles={buttonStackStyles}
+              >
+                <Spinner size={SpinnerSize.large} />
+              </Stack>
+            </Overlay>
+          )}
         </Stack>
-        <Stack tokens={innerStackTokens}>
-          <OrtPickerSelect options={plzs} value={selectedPlz} />
-          <PlzPickerSelect options={plzs} value={selectedPlz} />
-          <StrPickerSelect options={strs} value={selectedStr} />
-          <GebPickerSelect options={gebs} value={selectedGeb} />
-        </Stack>
-        <Stack horizontal tokens={buttonStackTokens} styles={buttonStackStyles}>
-          <OkButton
-            plzId={selectedPlz}
-            strId={selectedStr}
-            gebId={selectedGeb}
-          />
-          <CancelButton
-            plzId={selectedPlz}
-            strId={selectedStr}
-            gebId={selectedGeb}
-          />
-        </Stack>
-        {(plzs.length === 0 || strs.length === 0 || gebs.length === 0) && (
-          <Overlay>
-            <Stack
-              horizontal
-              tokens={overlayStackTokens}
-              styles={buttonStackStyles}
-            >
-              <Spinner size={SpinnerSize.large} />
-            </Stack>
-          </Overlay>
-        )}
-      </Stack>
+      )
     );
   }
 }

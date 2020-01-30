@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setPlz } from "../redux/actions";
 import { getPlzsByIds } from "../redux/selectors";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import intl from "react-intl-universal";
 
 class OrtPickerSelect extends Component {
   render() {
@@ -30,7 +31,7 @@ class OrtPickerSelect extends Component {
     return (
       <VirtualizedComboBox
         selectedKey={value}
-        label="Ort"
+        label={intl.get("CITY")}
         allowFreeform={true}
         autoComplete="on"
         options={optionsKeyValue}

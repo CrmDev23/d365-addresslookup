@@ -1,0 +1,7 @@
+{
+  "SELECT_ADDRESS": "Please select address",
+  "CITY": "City",
+  "POSTALCODE": "Postalcode",
+  "STREET": "Street",
+  "STREET_NUMBER": "Number"
+}

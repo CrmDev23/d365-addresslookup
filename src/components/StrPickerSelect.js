@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setStr } from "../redux/actions";
 import { getStrsByIds } from "../redux/selectors";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import intl from "react-intl-universal";
 
 class StrPickerSelect extends Component {
   render() {
@@ -16,7 +17,7 @@ class StrPickerSelect extends Component {
     return (
       <VirtualizedComboBox
         selectedKey={value}
-        label="Strasse"
+        label={intl.get("STREET")}
         allowFreeform={true}
         autoComplete="on"
         options={optionsKeyValue}

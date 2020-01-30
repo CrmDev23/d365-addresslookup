@@ -4,6 +4,7 @@ import { setPlz } from "../redux/actions";
 import { getPlzsByIds } from "../redux/selectors";
 import _sortBy from "lodash/sortBy";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import intl from "react-intl-universal";
 
 class PlzPickerSelect extends Component {
   render() {
@@ -18,7 +19,7 @@ class PlzPickerSelect extends Component {
     return (
       <VirtualizedComboBox
         selectedKey={value}
-        label="Plz"
+        label={intl.get("POSTALCODE")}
         allowFreeform={true}
         autoComplete="on"
         options={optionsKeyValue}

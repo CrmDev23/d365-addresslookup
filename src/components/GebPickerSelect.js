@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setGeb } from "../redux/actions";
 import { getGebsByIds } from "../redux/selectors";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import intl from "react-intl-universal";
 
 class GebPickerSelect extends Component {
   render() {
@@ -22,7 +23,7 @@ class GebPickerSelect extends Component {
     return (
       <VirtualizedComboBox
         selectedKey={value}
-        label="Nummer"
+        label={intl.get("STREET_NUMBER")}
         allowFreeform={true}
         autoComplete="on"
         options={optionsKeyValue}

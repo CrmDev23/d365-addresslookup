@@ -1,3 +1,5 @@
+import { from } from "./lcid";
+
 export const getContext = () => {
   var context;
   // GetGlobalContext defined by including reference to
@@ -23,4 +25,15 @@ export const getClientUrl = () => {
   } else {
     return "http://localhost:3001/";
   }
+};
+
+export const getUserLocal = () => {
+  let lcid;
+  if (process.env.NODE_ENV !== "production") {
+    lcid = 1033;
+  } else {
+    lcid = getContext().getUserLcid();
+  }
+  const locale = from(lcid);
+  return locale;
 };
