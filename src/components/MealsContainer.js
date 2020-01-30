@@ -40,22 +40,25 @@ class MealsContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.importSeqPlz !== this.props.importSeqPlz) {
+    if (
+      this.props.importSeqPlz !== 0 &&
+      prevProps.importSeqPlz !== this.props.importSeqPlz
+    ) {
       const { fetchPlzs, importSeqPlz } = this.props;
       fetchPlzs(importSeqPlz);
     }
     if (
       this.props.selectedPlz !== "" &&
-      (prevProps.selectedPlz !== this.props.selectedPlz ||
-        prevProps.importSeqStr !== this.props.importSeqStr)
+      prevProps.selectedPlz !== this.props.selectedPlz &&
+      this.props.importSeqStr !== 0
     ) {
       const { fetchStrs, selectedPlz, importSeqStr } = this.props;
       fetchStrs(selectedPlz, importSeqStr);
     }
     if (
       this.props.selectedStr !== "" &&
-      (prevProps.selectedStr !== this.props.selectedStr ||
-        prevProps.importSeqGeb !== this.props.importSeqGeb)
+      prevProps.selectedStr !== this.props.selectedStr &&
+      this.props.importSeqGeb !== 0
     ) {
       const { fetchGebs, selectedStr, importSeqGeb } = this.props;
       fetchGebs(selectedStr, importSeqGeb);

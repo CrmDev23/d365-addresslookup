@@ -28,7 +28,7 @@ class OkButton extends Component {
     window.parent.parent.opener.Xrm.Page.getAttribute(str_fieldname).setValue(
       str.mat_str_strbez2l + " " + gebText
     );
-    window.close();
+    window.parent.parent.close();
   };
 
   render() {
