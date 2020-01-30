@@ -1,1 +1,7 @@
-{ "COUNT_ALL": "count all de" }
+{
+  "SELECT_ADDRESS": "Bitte addresse auswählen",
+  "CITY": "Ort",
+  "POSTALCODE": "Postleitzahl",
+  "STREET": "Strasse",
+  "STREET_NUMBER": "Nummer"
+}
