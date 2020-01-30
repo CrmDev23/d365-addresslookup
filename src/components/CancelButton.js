@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPlzById, getStrById, getGebById } from "../redux/selectors";
 import { PrimaryButton } from "office-ui-fabric-react/lib/Button";
+import intl from "react-intl-universal";
 
 class CancelButton extends Component {
   handleClick = () => {
@@ -17,7 +18,7 @@ class CancelButton extends Component {
     return (
       <PrimaryButton
         styles={buttonStyles}
-        text="Cancel"
+        text={intl.get("CANCEL")}
         onClick={this.handleClick}
       />
     );

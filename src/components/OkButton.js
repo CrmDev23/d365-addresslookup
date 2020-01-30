@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPlzById, getStrById, getGebById } from "../redux/selectors";
 import { PrimaryButton } from "office-ui-fabric-react/lib/Button";
+import intl from "react-intl-universal";
 
 class OkButton extends Component {
   handleClick = () => {
@@ -40,7 +41,7 @@ class OkButton extends Component {
     return (
       <PrimaryButton
         styles={buttonStyles}
-        text="OK"
+        text={intl.get("OK")}
         onClick={this.handleClick}
       />
     );

@@ -3,5 +3,7 @@
   "CITY": "Ort",
   "POSTALCODE": "Postleitzahl",
   "STREET": "Strasse",
-  "STREET_NUMBER": "Nummer"
+  "STREET_NUMBER": "Nummer",
+  "OK": "OK",
+  "CANCEL": "Abbrechen"
 }
