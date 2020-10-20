@@ -5,7 +5,7 @@ import {
   fetchStrs,
   fetchGebs,
   fetchConfigs,
-  setFieldnames
+  setFieldnames,
 } from "../redux/actions";
 import OrtPickerSelect from "./OrtPickerSelect";
 import PlzPickerSelect from "./PlzPickerSelect";
@@ -19,7 +19,7 @@ import {
   selectGebs,
   selectedPlz,
   selectedStr,
-  selectedGeb
+  selectedGeb,
 } from "../redux/selectors";
 import { Stack } from "office-ui-fabric-react/lib/Stack";
 import { Text } from "office-ui-fabric-react/lib/Text";
@@ -35,17 +35,17 @@ class MealsContainer extends Component {
     this.state = { initDone: false };
   }
 
-  getLocale = locale => {
+  getLocale = (locale) => {
     return import("../locales/" + locale);
   };
 
   loadLocales = () => {
-    getUserLocal().then(userLocal => {
-      this.getLocale(userLocal).then(localData => {
+    getUserLocal().then((userLocal) => {
+      this.getLocale(userLocal).then((localData) => {
         intl
           .init({
             currentLocale: userLocal,
-            locales: { [userLocal]: localData }
+            locales: { [userLocal]: localData },
           })
           .then(() => {
             this.setState({ initDone: true });
@@ -76,7 +76,7 @@ class MealsContainer extends Component {
       fetchPlzs(importSeqPlz);
     }
     if (
-      this.props.selectedPlz !== "" &&
+      this.props.selectedPlz &&
       prevProps.selectedPlz !== this.props.selectedPlz &&
       this.props.importSeqStr !== 0
     ) {
@@ -84,7 +84,7 @@ class MealsContainer extends Component {
       fetchStrs(selectedPlz, importSeqStr);
     }
     if (
-      this.props.selectedStr !== "" &&
+      this.props.selectedStr &&
       prevProps.selectedStr !== this.props.selectedStr &&
       this.props.importSeqGeb !== 0
     ) {
@@ -100,7 +100,7 @@ class MealsContainer extends Component {
       gebs,
       selectedPlz,
       selectedStr,
-      selectedGeb
+      selectedGeb,
     } = this.props;
 
     const titleBoldStyle = { root: { fontWeight: FontWeights.semibold } };
@@ -108,8 +108,8 @@ class MealsContainer extends Component {
       root: {
         alignItems: "center",
         justifyContent: "center",
-        display: "flex"
-      }
+        display: "flex",
+      },
     };
 
     const innerStackTokens = { childrenGap: 5, padding: 10 };
@@ -146,7 +146,7 @@ class MealsContainer extends Component {
               gebId={selectedGeb}
             />
           </Stack>
-          {(plzs.length === 0 || strs.length === 0 || gebs.length === 0) && (
+          {plzs.length === 0 && (
             <Overlay>
               <Stack
                 horizontal
@@ -163,7 +163,7 @@ class MealsContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   plzs: selectPlzs(state),
   strs: selectStrs(state),
   gebs: selectGebs(state),
@@ -172,7 +172,7 @@ const mapStateToProps = state => ({
   selectedGeb: selectedGeb(state),
   importSeqPlz: state.ui.importSeqPlz,
   importSeqStr: state.ui.importSeqStr,
-  importSeqGeb: state.ui.importSeqGeb
+  importSeqGeb: state.ui.importSeqGeb,
 });
 
 const actionCreators = {
@@ -180,10 +180,7 @@ const actionCreators = {
   fetchStrs,
   fetchGebs,
   fetchConfigs,
-  setFieldnames
+  setFieldnames,
 };
 
-export default connect(
-  mapStateToProps,
-  actionCreators
-)(MealsContainer);
+export default connect(mapStateToProps, actionCreators)(MealsContainer);
