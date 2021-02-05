@@ -1,5 +1,7 @@
 import { from } from "./lcid";
 
+export const NrOfImportChunks = 5;
+
 export const getContext = () => {
   var context;
   // GetGlobalContext defined by including reference to
