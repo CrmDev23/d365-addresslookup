@@ -64,7 +64,12 @@ const reducer = (state = initialState, action) => {
       newState = produce(state, (draft) => {
         _merge(draft.entities, resultEntitiesStr);
         draft.ui[entityKeyStr] = resultValuesStr;
-        draft.ui.selectedStr = resultValuesStr[0];
+        if (resultValuesStr.length > 0) {
+          draft.ui.selectedStr = resultValuesStr[0];
+        } else {
+          draft.ui.selectedStr = "";
+          draft.ui.gebs = [];
+        }
       });
 
       break;

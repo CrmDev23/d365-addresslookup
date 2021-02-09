@@ -34,7 +34,7 @@ export const fetchStr = (plz, importSeqStr) => {
   let minImportSeq = importSeqStr - NrOfImportChunks + 1;
   let plzType = plz.mat_plz_typ;
   console.log("plzType " + plzType);
-  if (plzType == "30") {
+  if (plzType === "30") {
     return axios.get(
       getClientUrl() +
         "mat_strs?$select=mat_str_strbez2l" +
