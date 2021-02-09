@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getClientUrl } from "../config";
 
-export const fetchPlz = importSeqPlz =>
+export const fetchPlz = (importSeqPlz) =>
   axios.get(
     getClientUrl() +
       "mat_plzs?importsequencenumber=" +
@@ -12,7 +12,7 @@ export const fetchStr = (plz, importSeqStr) =>
   axios.get(
     getClientUrl() +
       "mat_strs?_mat_plzid_value=" +
-      plz +
+      plz.mat_plzid +
       "&importsequencenumber=" +
       importSeqStr +
       "&_sort=mat_str_strbez2l"

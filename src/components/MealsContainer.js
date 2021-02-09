@@ -20,6 +20,7 @@ import {
   selectedPlz,
   selectedStr,
   selectedGeb,
+  getPlzById,
 } from "../redux/selectors";
 import { Stack } from "office-ui-fabric-react/lib/Stack";
 import { Text } from "office-ui-fabric-react/lib/Text";
@@ -76,20 +77,20 @@ class MealsContainer extends Component {
       fetchPlzs(importSeqPlz);
     }
     if (
-      this.props.selectedPlz &&
-      prevProps.selectedPlz !== this.props.selectedPlz &&
+      this.props.selectedPlzId &&
+      prevProps.selectedPlzId !== this.props.selectedPlzId &&
       this.props.importSeqStr !== 0
     ) {
       const { fetchStrs, selectedPlz, importSeqStr } = this.props;
       fetchStrs(selectedPlz, importSeqStr);
     }
     if (
-      this.props.selectedStr &&
-      prevProps.selectedStr !== this.props.selectedStr &&
+      this.props.selectedStrId &&
+      prevProps.selectedStrId !== this.props.selectedStrId &&
       this.props.importSeqGeb !== 0
     ) {
-      const { fetchGebs, selectedStr, importSeqGeb } = this.props;
-      fetchGebs(selectedStr, importSeqGeb);
+      const { fetchGebs, selectedStrId, importSeqGeb } = this.props;
+      fetchGebs(selectedStrId, importSeqGeb);
     }
   }
 
@@ -98,9 +99,10 @@ class MealsContainer extends Component {
       plzs,
       strs,
       gebs,
-      selectedPlz,
-      selectedStr,
-      selectedGeb,
+      selectedPlzId,
+      selectedStrId,
+      selectedGebId,
+      isLoading,
     } = this.props;
 
     const titleBoldStyle = { root: { fontWeight: FontWeights.semibold } };
@@ -125,10 +127,10 @@ class MealsContainer extends Component {
             </Text>
           </Stack>
           <Stack tokens={innerStackTokens}>
-            <OrtPickerSelect options={plzs} value={selectedPlz} />
-            <PlzPickerSelect options={plzs} value={selectedPlz} />
-            <StrPickerSelect options={strs} value={selectedStr} />
-            <GebPickerSelect options={gebs} value={selectedGeb} />
+            <OrtPickerSelect options={plzs} value={selectedPlzId} />
+            <PlzPickerSelect options={plzs} value={selectedPlzId} />
+            <StrPickerSelect options={strs} value={selectedStrId} />
+            <GebPickerSelect options={gebs} value={selectedGebId} />
           </Stack>
           <Stack
             horizontal
@@ -136,17 +138,17 @@ class MealsContainer extends Component {
             styles={buttonStackStyles}
           >
             <OkButton
-              plzId={selectedPlz}
-              strId={selectedStr}
-              gebId={selectedGeb}
+              plzId={selectedPlzId}
+              strId={selectedStrId}
+              gebId={selectedGebId}
             />
             <CancelButton
-              plzId={selectedPlz}
-              strId={selectedStr}
-              gebId={selectedGeb}
+              plzId={selectedPlzId}
+              strId={selectedStrId}
+              gebId={selectedGebId}
             />
           </Stack>
-          {plzs.length === 0 && (
+          {isLoading && (
             <Overlay>
               <Stack
                 horizontal
@@ -167,12 +169,14 @@ const mapStateToProps = (state) => ({
   plzs: selectPlzs(state),
   strs: selectStrs(state),
   gebs: selectGebs(state),
-  selectedPlz: selectedPlz(state),
-  selectedStr: selectedStr(state),
-  selectedGeb: selectedGeb(state),
+  selectedPlzId: selectedPlz(state),
+  selectedStrId: selectedStr(state),
+  selectedGebId: selectedGeb(state),
+  selectedPlz: getPlzById(state, state.ui.selectedPlz),
   importSeqPlz: state.ui.importSeqPlz,
   importSeqStr: state.ui.importSeqStr,
   importSeqGeb: state.ui.importSeqGeb,
+  isLoading: state.ui.isLoading,
 });
 
 const actionCreators = {

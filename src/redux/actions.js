@@ -12,62 +12,75 @@ export const SET_STR = "SET_STR";
 export const SET_GEB = "SET_GEB";
 export const SET_FIELDNAMES = "SET_FIELDNAMES";
 
-export const setPlz = plzid => ({
+export const SET_ISLOADING = "SET_ISLOADING";
+
+export const setPlz = (plzid) => ({
   type: SET_PLZ,
   payload: {
-    plzid
-  }
+    plzid,
+  },
 });
 
-export const setStr = strid => ({
+export const setStr = (strid) => ({
   type: SET_STR,
   payload: {
-    strid
-  }
+    strid,
+  },
 });
 
-export const setGeb = gebid => ({
+export const setGeb = (gebid) => ({
   type: SET_GEB,
   payload: {
-    gebid
-  }
+    gebid,
+  },
 });
 
-export const setFieldnames = fieldnames => ({
+export const setFieldnames = (fieldnames) => ({
   type: SET_FIELDNAMES,
   payload: {
-    fieldnames
-  }
+    fieldnames,
+  },
 });
 
-export const fetchPlzs = importSeqPlz => dispatch => {
+export const setIsloading = (isLoading) => ({
+  type: SET_ISLOADING,
+  payload: {
+    isLoading,
+  },
+});
+
+export const fetchPlzs = (importSeqPlz) => (dispatch) => {
+  dispatch(setIsloading(true));
   return fetchPlz(importSeqPlz).then(
     fetchCallback("plzs", dispatch, plzSchema, FETCH_PLZS)
   );
 };
 
-export const fetchStrs = (plz, importSeqStr) => dispatch => {
+export const fetchStrs = (plz, importSeqStr) => (dispatch) => {
+  dispatch(setIsloading(true));
   return fetchStr(plz, importSeqStr).then(
     fetchCallback("strs", dispatch, strSchema, FETCH_STRS)
   );
 };
 
-export const fetchGebs = (str, importSeqGeb) => dispatch => {
+export const fetchGebs = (str, importSeqGeb) => (dispatch) => {
+  dispatch(setIsloading(true));
   return fetchGeb(str, importSeqGeb).then(
     fetchCallback("gebs", dispatch, gebSchema, FETCH_GEBS)
   );
 };
 
-export const fetchConfigs = () => dispatch => {
+export const fetchConfigs = () => (dispatch) => {
+  dispatch(setIsloading(true));
   return fetchConfig().then(
     fetchCallback("configs", dispatch, configSchema, FETCH_CONFIGS)
   );
 };
 
-const fetchCallback = (entityKey, dispatch, schema, type) => res => {
+const fetchCallback = (entityKey, dispatch, schema, type) => (res) => {
   const { data } = res;
   const { entities, result } = normalize(data, [schema]);
-
+  dispatch(setIsloading(false));
   return dispatch(saveResult(entities, entityKey, result, type));
 };
 
@@ -76,6 +89,6 @@ const saveResult = (resultEntities, entityKey, resultValues, resultType) => ({
   payload: {
     resultEntities,
     entityKey,
-    resultValues
-  }
+    resultValues,
+  },
 });

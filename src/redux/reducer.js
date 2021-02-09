@@ -8,7 +8,8 @@ import {
   SET_PLZ,
   SET_STR,
   SET_GEB,
-  SET_FIELDNAMES
+  SET_FIELDNAMES,
+  SET_ISLOADING,
 } from "./actions";
 
 const initialState = {
@@ -23,14 +24,15 @@ const initialState = {
     fieldnames: {},
     importSeqPlz: 0,
     importSeqStr: 0,
-    importSeqGeb: 0
+    importSeqGeb: 0,
+    isLoading: false,
   },
   entities: {
     plzs: {},
     strs: {},
     gebs: {},
-    configs: {}
-  }
+    configs: {},
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -42,10 +44,10 @@ const reducer = (state = initialState, action) => {
       const {
         resultEntities: resultEntitiesPlz,
         entityKey: entityKeyPlz,
-        resultValues: resultValuesPlz
+        resultValues: resultValuesPlz,
       } = payload;
 
-      newState = produce(state, draft => {
+      newState = produce(state, (draft) => {
         _merge(draft.entities, resultEntitiesPlz);
         draft.ui[entityKeyPlz] = resultValuesPlz;
         draft.ui.selectedPlz = resultValuesPlz[0];
@@ -56,10 +58,10 @@ const reducer = (state = initialState, action) => {
       const {
         resultEntities: resultEntitiesStr,
         entityKey: entityKeyStr,
-        resultValues: resultValuesStr
+        resultValues: resultValuesStr,
       } = payload;
 
-      newState = produce(state, draft => {
+      newState = produce(state, (draft) => {
         _merge(draft.entities, resultEntitiesStr);
         draft.ui[entityKeyStr] = resultValuesStr;
         draft.ui.selectedStr = resultValuesStr[0];
@@ -70,10 +72,10 @@ const reducer = (state = initialState, action) => {
       const {
         resultEntities: resultEntitiesGeb,
         entityKey: entityKeyGeb,
-        resultValues: resultValuesGeb
+        resultValues: resultValuesGeb,
       } = payload;
 
-      newState = produce(state, draft => {
+      newState = produce(state, (draft) => {
         _merge(draft.entities, resultEntitiesGeb);
         draft.ui[entityKeyGeb] = resultValuesGeb;
         draft.ui.selectedGeb = resultValuesGeb[0];
@@ -84,10 +86,10 @@ const reducer = (state = initialState, action) => {
       const {
         resultEntities: resultEntitiesConfig,
         entityKey: entityKeyConfig,
-        resultValues: resultValuesConfig
+        resultValues: resultValuesConfig,
       } = payload;
 
-      newState = produce(state, draft => {
+      newState = produce(state, (draft) => {
         _merge(draft.entities, resultEntitiesConfig);
         draft.ui[entityKeyConfig] = resultValuesConfig;
         let config = resultEntitiesConfig.configs[resultValuesConfig[0]];
@@ -110,7 +112,7 @@ const reducer = (state = initialState, action) => {
     case SET_PLZ:
       const { plzid } = payload;
 
-      newState = produce(state, draft => {
+      newState = produce(state, (draft) => {
         draft.ui.selectedPlz = plzid;
       });
 
@@ -118,7 +120,7 @@ const reducer = (state = initialState, action) => {
     case SET_STR:
       const { strid } = payload;
 
-      newState = produce(state, draft => {
+      newState = produce(state, (draft) => {
         draft.ui.selectedStr = strid;
       });
 
@@ -126,7 +128,7 @@ const reducer = (state = initialState, action) => {
     case SET_GEB:
       const { gebid } = payload;
 
-      newState = produce(state, draft => {
+      newState = produce(state, (draft) => {
         draft.ui.selectedGeb = gebid;
       });
 
@@ -134,8 +136,16 @@ const reducer = (state = initialState, action) => {
     case SET_FIELDNAMES:
       const { fieldnames } = payload;
 
-      newState = produce(state, draft => {
+      newState = produce(state, (draft) => {
         draft.ui.fieldnames = fieldnames;
+      });
+
+      break;
+    case SET_ISLOADING:
+      const { isLoading } = payload;
+
+      newState = produce(state, (draft) => {
+        draft.ui.isLoading = isLoading;
       });
 
       break;
