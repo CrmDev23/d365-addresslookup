@@ -10,11 +10,28 @@ class PlzPickerSelect extends Component {
   render() {
     const { options, value } = this.props;
     let optionsSorted = _sortBy(options, ["mat_plz_postleitzahl"]);
-    let optionsKeyValue = optionsSorted.map(plz => {
-      return {
-        key: plz.mat_plzid,
-        text: plz.mat_plz_postleitzahl
-      };
+    let optionsKeyValue = optionsSorted.map((plz, index, array) => {
+      // If city names are equal, add plz in parentesis
+      if (
+        (index > 0 &&
+          array[index].mat_plz_postleitzahl ===
+            array[index - 1].mat_plz_postleitzahl) ||
+        (array.length > index + 1 &&
+          array[index].mat_plz_postleitzahl ===
+            array[index + 1].mat_plz_postleitzahl)
+      ) {
+        return {
+          key: plz.mat_plzid,
+          text: plz.mat_plz_postleitzahl,
+          title: plz.mat_plz_postleitzahl + " (" + plz.mat_plz_ortbez27 + ")",
+        };
+      } else {
+        return {
+          key: plz.mat_plzid,
+          text: plz.mat_plz_postleitzahl,
+          title: plz.mat_plz_postleitzahl,
+        };
+      }
     });
     return (
       <VirtualizedComboBox
@@ -40,12 +57,9 @@ class PlzPickerSelect extends Component {
 }
 
 const mapStateToProps = (state, { options }) => ({
-  options: getPlzsByIds(state, options)
+  options: getPlzsByIds(state, options),
 });
 
 const actionCreators = { setPlz };
 
-export default connect(
-  mapStateToProps,
-  actionCreators
-)(PlzPickerSelect);
+export default connect(mapStateToProps, actionCreators)(PlzPickerSelect);

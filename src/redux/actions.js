@@ -78,8 +78,7 @@ export const fetchConfigs = () => (dispatch) => {
 };
 
 const fetchCallback = (entityKey, dispatch, schema, type) => (res) => {
-  const { data } = res;
-  const { entities, result } = normalize(data, [schema]);
+  const { entities, result } = normalize(res, [schema]);
   dispatch(setIsloading(false));
   return dispatch(saveResult(entities, entityKey, result, type));
 };

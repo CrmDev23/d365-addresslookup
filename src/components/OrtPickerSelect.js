@@ -19,12 +19,14 @@ class OrtPickerSelect extends Component {
       ) {
         return {
           key: plz.mat_plzid,
-          text: plz.mat_plz_ortbez27 + " (" + plz.mat_plz_postleitzahl + ")"
+          text: plz.mat_plz_ortbez27,
+          title: plz.mat_plz_ortbez27 + " (" + plz.mat_plz_postleitzahl + ")",
         };
       } else {
         return {
           key: plz.mat_plzid,
-          text: plz.mat_plz_ortbez27
+          text: plz.mat_plz_ortbez27,
+          title: plz.mat_plz_ortbez27,
         };
       }
     });
@@ -52,12 +54,9 @@ class OrtPickerSelect extends Component {
 }
 
 const mapStateToProps = (state, { options }) => ({
-  options: getPlzsByIds(state, options)
+  options: getPlzsByIds(state, options),
 });
 
 const actionCreators = { setPlz };
 
-export default connect(
-  mapStateToProps,
-  actionCreators
-)(OrtPickerSelect);
+export default connect(mapStateToProps, actionCreators)(OrtPickerSelect);
