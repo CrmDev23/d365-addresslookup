@@ -22,14 +22,12 @@ class PlzPickerSelect extends Component {
       ) {
         return {
           key: plz.mat_plzid,
-          text: plz.mat_plz_postleitzahl,
-          title: plz.mat_plz_postleitzahl + " (" + plz.mat_plz_ortbez27 + ")",
+          text: plz.mat_plz_postleitzahl + " (" + plz.mat_plz_ortbez27 + ")",
         };
       } else {
         return {
           key: plz.mat_plzid,
           text: plz.mat_plz_postleitzahl,
-          title: plz.mat_plz_postleitzahl,
         };
       }
     });

@@ -19,14 +19,12 @@ class OrtPickerSelect extends Component {
       ) {
         return {
           key: plz.mat_plzid,
-          text: plz.mat_plz_ortbez27,
-          title: plz.mat_plz_ortbez27 + " (" + plz.mat_plz_postleitzahl + ")",
+          text: plz.mat_plz_ortbez27 + " (" + plz.mat_plz_postleitzahl + ")",
         };
       } else {
         return {
           key: plz.mat_plzid,
           text: plz.mat_plz_ortbez27,
-          title: plz.mat_plz_ortbez27,
         };
       }
     });
