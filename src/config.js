@@ -25,7 +25,7 @@ export const getClientUrl = () => {
   if (process.env.NODE_ENV === "production") {
     return getContext().getClientUrl() + "/api/data/v9.1/";
   } else {
-    return "https://061b51dc-a921-4666-95af-caf44658c0c5.mock.pstmn.io/api/data/v9.1/";
+    return "https://2dd60c03-c292-414e-b888-842e51d8e968.mock.pstmn.io/api/data/v9.1/";
   }
 };
 
