@@ -31,7 +31,7 @@ export const fetchStr = (plz, importSeqStr) => {
   if (plzType === "30") {
     let query =
       getClientUrl() +
-      "mat_strs?$select=mat_str_strbez2l" +
+      "mat_strs?$select=mat_str_strbez2l,mat_geb_hnr" +
       "&$filter=(Microsoft.Dynamics.CRM.Between(PropertyName='importsequencenumber',PropertyValues=['" +
       minImportSeq +
       "','" +
@@ -45,7 +45,7 @@ export const fetchStr = (plz, importSeqStr) => {
   } else {
     let query =
       getClientUrl() +
-      "mat_strs?$select=mat_str_strbez2l" +
+      "mat_strs?$select=mat_str_strbez2l,mat_geb_hnr" +
       "&$orderby=mat_str_strbez2l" +
       "&$filter=_mat_plzid_value eq " +
       plz.mat_plzid +

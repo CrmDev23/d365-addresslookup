@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setStr } from "../redux/actions";
-import { getStrsByIds } from "../redux/selectors";
+import { setGeb } from "../redux/actions";
+import { getGebsByIds } from "../redux/selectors";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
 import intl from "react-intl-universal";
 
-class GebPickerSelect extends Component {
+class GebFachPickerSelect extends Component {
   render() {
     const { options, value } = this.props;
-    let optionsKeyValue = options.map(str => {
+    let optionsKeyValue = options.map(geb => {
+      let optionText = "";
+      if (geb.mat_geb_hnra) {
+        optionText = geb.mat_geb_hnr + geb.mat_geb_hnra;
+      } else if (geb.mat_geb_hnr) {
+        optionText = geb.mat_geb_hnr.toString();
+      }
       return {
-        key: str.mat_strid,
-        text: str.mat_geb_hnr
+        key: geb.mat_gebid,
+        text: optionText
       };
     });
     return (
@@ -30,20 +36,20 @@ class GebPickerSelect extends Component {
   }
 
   onChange(event, option, index, value) {
-    const { setStr } = this.props;
+    const { setGeb } = this.props;
     if (option) {
-      setStr(option.key);
+      setGeb(option.key);
     }
   }
 }
 
 const mapStateToProps = (state, { options }) => ({
-  options: getStrsByIds(state, options)
+  options: getGebsByIds(state, options)
 });
 
-const actionCreators = { setStr };
+const actionCreators = { setGeb };
 
 export default connect(
   mapStateToProps,
   actionCreators
-)(GebPickerSelect);
+)(GebFachPickerSelect);

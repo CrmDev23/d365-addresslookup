@@ -130,7 +130,7 @@ class MealsContainer extends Component {
             <OrtPickerSelect options={plzs} value={selectedPlzId} />
             <PlzPickerSelect options={plzs} value={selectedPlzId} />
             <StrPickerSelect options={strs} value={selectedStrId} />
-            <GebPickerSelect options={gebs} value={selectedGebId} />
+            <GebPickerSelect options={strs} value={selectedStrId} />
           </Stack>
           <Stack
             horizontal
