@@ -3,6 +3,7 @@ import _merge from "lodash/merge";
 import {
   FETCH_PLZS,
   FETCH_STRS,
+  FETCH_STRS_FACH,
   FETCH_GEBS,
   FETCH_CONFIGS,
   SET_PLZ,
@@ -73,6 +74,37 @@ const reducer = (state = initialState, action) => {
       });
 
       break;
+
+    case FETCH_STRS_FACH:
+      const {
+        resultEntities: resultEntitiesStrFach,
+        entityKey: entityKeyStrFach,
+        resultValues: resultValuesStrFach,
+      } = payload;
+
+      newState = produce(state, (draft) => {
+        _merge(draft.entities, resultEntitiesStrFach);
+        draft.ui[entityKeyStrFach] = resultValuesStrFach;
+        
+        let str = resultEntitiesStrFach.strs[resultValuesStrFach[0]];
+        if (str != null && str.mat_geb_hnr != null){
+          let gebs = str.mat_geb_hnr.split(";");
+          draft.entities.plzs = gebs;
+          draft.ui.plzs = gebs;
+          draft.ui.selectedGeb = gebs[0];
+        }
+
+
+        if (resultValuesStrFach.length > 0) {
+          draft.ui.selectedStr = resultValuesStrFach[0];
+        } else {
+          draft.ui.selectedStr = "";
+          draft.ui.gebs = [];
+        }
+      });
+
+      break;
+
     case FETCH_GEBS:
       const {
         resultEntities: resultEntitiesGeb,

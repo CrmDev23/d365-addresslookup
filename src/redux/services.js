@@ -28,34 +28,37 @@ export const fetchStr = (plz, importSeqStr) => {
   let minImportSeq = importSeqStr - NrOfImportChunks + 1;
   let plzType = plz.mat_plz_typ;
   console.log("plzType " + plzType);
-  if (plzType === "30") {
-    let query =
-      getClientUrl() +
-      "mat_strs?$select=mat_str_strbez2l,mat_geb_hnr" +
-      "&$filter=(Microsoft.Dynamics.CRM.Between(PropertyName='importsequencenumber',PropertyValues=['" +
-      minImportSeq +
-      "','" +
-      importSeqStr +
-      "']))" +
-      " and (mat_str_mat_geb/any(o1:(o1/_mat_geb_fachonrp_value eq " +
-      plz.mat_plzid +
-      ")))" +
-      "&$orderby=mat_str_strbez2l asc";
-    return allResults(query);
-  } else {
-    let query =
-      getClientUrl() +
-      "mat_strs?$select=mat_str_strbez2l,mat_geb_hnr" +
-      "&$orderby=mat_str_strbez2l" +
-      "&$filter=_mat_plzid_value eq " +
-      plz.mat_plzid +
-      " and (Microsoft.Dynamics.CRM.Between(PropertyName='importsequencenumber',PropertyValues=['" +
-      minImportSeq +
-      "','" +
-      importSeqStr +
-      "']))";
-    return allResults(query);
-  }
+  let query =
+    getClientUrl() +
+    "mat_strs?$select=mat_str_strbez2l,mat_geb_hnr" +
+    "&$filter=(Microsoft.Dynamics.CRM.Between(PropertyName='importsequencenumber',PropertyValues=['" +
+    minImportSeq +
+    "','" +
+    importSeqStr +
+    "']))" +
+    " and (mat_str_mat_geb/any(o1:(o1/_mat_geb_fachonrp_value eq " +
+    plz.mat_plzid +
+    ")))" +
+    "&$orderby=mat_str_strbez2l asc";
+  return allResults(query);
+};
+
+export const fetchStrFach = (plz, importSeqStr) => {
+  let minImportSeq = importSeqStr - NrOfImportChunks + 1;
+  let plzType = plz.mat_plz_typ;
+  console.log("plzType " + plzType);
+  let query =
+    getClientUrl() +
+    "mat_strs?$select=mat_str_strbez2l,mat_geb_hnr" +
+    "&$orderby=mat_str_strbez2l" +
+    "&$filter=_mat_plzid_value eq " +
+    plz.mat_plzid +
+    " and (Microsoft.Dynamics.CRM.Between(PropertyName='importsequencenumber',PropertyValues=['" +
+    minImportSeq +
+    "','" +
+    importSeqStr +
+    "']))";
+  return allResults(query);
 };
 
 export const fetchGeb = (str, importSeqGeb) => {

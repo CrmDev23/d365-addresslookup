@@ -1,14 +1,16 @@
-import { fetchPlz, fetchStr, fetchGeb, fetchConfig } from "./services";
+import { fetchPlz, fetchStr, fetchStrFach, fetchGeb, fetchConfig } from "./services";
 import { normalize } from "normalizr";
 import { plzSchema, strSchema, gebSchema, configSchema } from "./schemas";
 
 export const FETCH_PLZS = "FETCH_PLZS";
 export const FETCH_STRS = "FETCH_STRS";
+export const FETCH_STRS_FACH = "FETCH_STRS_FACH";
 export const FETCH_GEBS = "FETCH_GEBS";
 export const FETCH_CONFIGS = "FETCH_CONFIGS";
 
 export const SET_PLZ = "SET_PLZ";
 export const SET_STR = "SET_STR";
+export const SET_STR_FACH = "SET_STR_FACH";
 export const SET_GEB = "SET_GEB";
 export const SET_FIELDNAMES = "SET_FIELDNAMES";
 
@@ -60,6 +62,13 @@ export const fetchStrs = (plz, importSeqStr) => (dispatch) => {
   dispatch(setIsloading(true));
   return fetchStr(plz, importSeqStr).then(
     fetchCallback("strs", dispatch, strSchema, FETCH_STRS)
+  );
+};
+
+export const fetchStrsFach = (plz, importSeqStr) => (dispatch) => {
+  dispatch(setIsloading(true));
+  return fetchStrFach(plz, importSeqStr).then(
+    fetchCallback("strsfach", dispatch, strSchema, FETCH_STRS_FACH)
   );
 };
 

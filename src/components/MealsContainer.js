@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
   fetchPlzs,
   fetchStrs,
+  fetchStrsFach,
   fetchGebs,
   fetchConfigs,
   setFieldnames,
@@ -82,7 +83,13 @@ class MealsContainer extends Component {
       this.props.importSeqStr !== 0
     ) {
       const { fetchStrs, selectedPlz, importSeqStr } = this.props;
-      fetchStrs(selectedPlz, importSeqStr);
+      let plzType = selectedPlz.mat_plz_typ;
+      if (plzType === "30") {
+        fetchStrs(selectedPlz, importSeqStr);
+      }
+      else {
+        fetchStrsFach(selectedPlz, importSeqStr);
+      }
     }
     if (
       this.props.selectedStrId &&
@@ -90,7 +97,10 @@ class MealsContainer extends Component {
       this.props.importSeqGeb !== 0
     ) {
       const { fetchGebs, selectedStrId, importSeqGeb } = this.props;
-      fetchGebs(selectedStrId, importSeqGeb);
+      let plzType = selectedPlz.mat_plz_typ;
+      if (plzType === "30") {
+        fetchGebs(selectedStrId, importSeqGeb);
+      }
     }
   }
 
