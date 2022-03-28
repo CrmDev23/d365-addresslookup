@@ -89,11 +89,17 @@ const reducer = (state = initialState, action) => {
         let str = resultEntitiesStrFach.strs[resultValuesStrFach[0]];
         if (str != null && str.mat_geb_hnr != null){
           let gebs = str.mat_geb_hnr.split(";");
-          draft.entities.plzs = gebs;
-          draft.ui.plzs = gebs;
+          let gebsReduced = gebs.reduce(function(acc, cur, i) {
+            let gebsObj = {};
+            gebsObj.mat_strid = cur;
+            gebsObj.mat_geb_hnr = cur;
+            acc[cur] = gebsObj;
+            return acc;
+          }, {});
+          _merge(draft.entities.gebs, gebsReduced);
+          draft.ui["gebs"] = gebs;
           draft.ui.selectedGeb = gebs[0];
         }
-
 
         if (resultValuesStrFach.length > 0) {
           draft.ui.selectedStr = resultValuesStrFach[0];

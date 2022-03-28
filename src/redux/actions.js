@@ -68,7 +68,7 @@ export const fetchStrs = (plz, importSeqStr) => (dispatch) => {
 export const fetchStrsFach = (plz, importSeqStr) => (dispatch) => {
   dispatch(setIsloading(true));
   return fetchStrFach(plz, importSeqStr).then(
-    fetchCallback("strsfach", dispatch, strSchema, FETCH_STRS_FACH)
+    fetchCallback("strs", dispatch, strSchema, FETCH_STRS_FACH)
   );
 };
 

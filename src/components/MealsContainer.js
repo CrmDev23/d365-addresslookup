@@ -82,7 +82,7 @@ class MealsContainer extends Component {
       prevProps.selectedPlzId !== this.props.selectedPlzId &&
       this.props.importSeqStr !== 0
     ) {
-      const { fetchStrs, selectedPlz, importSeqStr } = this.props;
+      const { fetchStrs, fetchStrsFach, selectedPlz, importSeqStr } = this.props;
       let plzType = selectedPlz.mat_plz_typ;
       if (plzType === "30") {
         fetchStrs(selectedPlz, importSeqStr);
@@ -140,7 +140,7 @@ class MealsContainer extends Component {
             <OrtPickerSelect options={plzs} value={selectedPlzId} />
             <PlzPickerSelect options={plzs} value={selectedPlzId} />
             <StrPickerSelect options={strs} value={selectedStrId} />
-            <GebPickerSelect options={strs} value={selectedStrId} />
+            <GebPickerSelect options={gebs} value={selectedGebId} />
           </Stack>
           <Stack
             horizontal
@@ -192,6 +192,7 @@ const mapStateToProps = (state) => ({
 const actionCreators = {
   fetchPlzs,
   fetchStrs,
+  fetchStrsFach,
   fetchGebs,
   fetchConfigs,
   setFieldnames,

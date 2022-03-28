@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setStr } from "../redux/actions";
-import { getStrsByIds } from "../redux/selectors";
+import { setGeb } from "../redux/actions";
+import { getGebsByIds } from "../redux/selectors";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
 import intl from "react-intl-universal";
 
@@ -30,18 +30,18 @@ class GebPickerSelect extends Component {
   }
 
   onChange(event, option, index, value) {
-    const { setStr } = this.props;
+    const { setGeb } = this.props;
     if (option) {
-      setStr(option.key);
+      setGeb(option.key);
     }
   }
 }
 
 const mapStateToProps = (state, { options }) => ({
-  options: getStrsByIds(state, options)
+  options: getGebsByIds(state, options)
 });
 
-const actionCreators = { setStr };
+const actionCreators = { setGeb };
 
 export default connect(
   mapStateToProps,
