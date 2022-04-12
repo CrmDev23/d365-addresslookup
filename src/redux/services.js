@@ -48,7 +48,7 @@ export const fetchStrFach = (plz, importSeqStr) => {
   let minImportSeq = importSeqStr - NrOfImportChunks + 1;
   let query =
     getClientUrl() +
-    "mat_strs?$select=mat_str_strbez2l,mat_geb_hnr" +
+    "mat_strs?$select=mat_str_strbez2l,mat_geb_hnr,_mat_plzid_value" +
     "&$filter=(Microsoft.Dynamics.CRM.Between(PropertyName='importsequencenumber',PropertyValues=['" +
     minImportSeq +
     "','" +

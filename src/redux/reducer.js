@@ -20,6 +20,7 @@ const initialState = {
     gebs: [],
     configs: [],
     selectedPlzName: "",
+    selectedPlz: "",
     selectedStr: "",
     selectedGebName: "",
     fieldnames: {},
@@ -90,16 +91,19 @@ const reducer = (state = initialState, action) => {
         let str = resultEntitiesStrFach.strs[resultValuesStrFach[0]];
         if (str != null && str.mat_geb_hnr != null){
           let gebs = str.mat_geb_hnr.split(";");
-          let gebsReduced = gebs.reduce(function(acc, cur, i) {
-            let gebsObj = {};
-            gebsObj.mat_strid = cur;
-            gebsObj.mat_geb_hnr = cur;
-            acc[cur] = gebsObj;
-            return acc;
-          }, {});
+          let gebsReduced = gebs.reduce((acc, cur) => {
+              let gebsObj = {};
+              gebsObj.mat_strid = cur;
+              gebsObj.mat_geb_hnr = cur;
+              acc[cur] = gebsObj;
+              return acc;
+            }, {});
           _merge(draft.entities.gebs, gebsReduced);
           draft.ui["gebs"] = gebs;
           draft.ui.selectedGebName = gebs[0];
+        }
+        if (str != null && str._mat_plzid_value != null){
+          draft.ui.selectedPlz = str._mat_plzid_value;
         }
 
         if (resultValuesStrFach.length > 0) {
@@ -122,7 +126,7 @@ const reducer = (state = initialState, action) => {
       newState = produce(state, (draft) => {
         _merge(draft.entities, resultEntitiesGeb);
         draft.ui[entityKeyGeb] = resultValuesGeb;
-        draft.ui.selectedGeb = resultValuesGeb[0];
+        draft.ui.selectedGebName = resultValuesGeb[0];
       });
 
       break;
@@ -169,16 +173,19 @@ const reducer = (state = initialState, action) => {
         let str = state.entities.strs[strid];
         if (str != null && str.mat_geb_hnr != null){
           let gebs = str.mat_geb_hnr.split(";");
-          let gebsReduced = gebs.reduce(function(acc, cur, i) {
-            let gebsObj = {};
-            gebsObj.mat_strid = cur;
-            gebsObj.mat_geb_hnr = cur;
-            acc[cur] = gebsObj;
-            return acc;
-          }, {});
+          let gebsReduced = gebs.reduce((acc, cur) => {
+              let gebsObj = {};
+              gebsObj.mat_strid = cur;
+              gebsObj.mat_geb_hnr = cur;
+              acc[cur] = gebsObj;
+              return acc;
+            }, {});
           _merge(draft.entities.gebs, gebsReduced);
           draft.ui["gebs"] = gebs;
-          draft.ui.selectedGeb = gebs[0];
+          draft.ui.selectedGebName = gebs[0];
+        }
+        if (str != null && str._mat_plzid_value != null){
+          draft.ui.selectedPlz = str._mat_plzid_value;
         }
       });
 

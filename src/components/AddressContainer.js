@@ -9,6 +9,7 @@ import {
   setFieldnames,
 } from "../redux/actions";
 import OrtPickerSelect from "./OrtPickerSelect";
+import PlzPickerSelect from "./PlzPickerSelect";
 import StrPickerSelect from "./StrPickerSelect";
 import GebPickerSelect from "./GebPickerSelect";
 import OkButton from "./OkButton";
@@ -18,6 +19,7 @@ import {
   selectStrs,
   selectGebs,
   selectedPlzName,
+  selectedPlz,
   selectedStr,
   selectedGebName
 } from "../redux/selectors";
@@ -91,6 +93,7 @@ class AddressContainer extends Component {
       strs,
       gebs,
       selectedPlzName,
+      selectedPlzId,
       selectedStrId,
       selectedGebName,
       isLoading,
@@ -119,6 +122,7 @@ class AddressContainer extends Component {
           </Stack>
           <Stack tokens={innerStackTokens}>
             <OrtPickerSelect options={plzs} value={selectedPlzName} />
+            <PlzPickerSelect options={plzs} value={selectedPlzId} />
             <StrPickerSelect options={strs} value={selectedStrId} />
             <GebPickerSelect options={gebs} value={selectedGebName} />
           </Stack>
@@ -160,6 +164,7 @@ const mapStateToProps = (state) => ({
   strs: selectStrs(state),
   gebs: selectGebs(state),
   selectedPlzName: selectedPlzName(state),
+  selectedPlzId: selectedPlz(state),
   selectedStrId: selectedStr(state),
   selectedGebName: selectedGebName(state),
   importSeqPlz: state.ui.importSeqPlz,
