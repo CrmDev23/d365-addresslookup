@@ -17,10 +17,9 @@ import {
   selectPlzs,
   selectStrs,
   selectGebs,
-  selectedPlz,
+  selectedPlzName,
   selectedStr,
-  selectedGeb,
-  getPlzById,
+  selectedGebName
 } from "../redux/selectors";
 import { Stack } from "@fluentui/react";
 import { Text } from "@fluentui/react";
@@ -77,12 +76,12 @@ class AddressContainer extends Component {
       fetchPlzs(importSeqPlz);
     }
     if (
-      this.props.selectedPlzId &&
-      prevProps.selectedPlzId !== this.props.selectedPlzId &&
+      this.props.selectedPlzName &&
+      prevProps.selectedPlzName !== this.props.selectedPlzName &&
       this.props.importSeqStr !== 0
     ) {
-      const { fetchStrsFach, selectedPlzId, importSeqStr } = this.props;
-      fetchStrsFach(selectedPlzId, importSeqStr);
+      const { fetchStrsFach, selectedPlzName, importSeqStr } = this.props;
+      fetchStrsFach(selectedPlzName, importSeqStr);
     }
   }
 
@@ -91,9 +90,9 @@ class AddressContainer extends Component {
       plzs,
       strs,
       gebs,
-      selectedPlzId,
+      selectedPlzName,
       selectedStrId,
-      selectedGebId,
+      selectedGebName,
       isLoading,
     } = this.props;
 
@@ -119,9 +118,9 @@ class AddressContainer extends Component {
             </Text>
           </Stack>
           <Stack tokens={innerStackTokens}>
-            <OrtPickerSelect options={plzs} value={selectedPlzId} />
+            <OrtPickerSelect options={plzs} value={selectedPlzName} />
             <StrPickerSelect options={strs} value={selectedStrId} />
-            <GebPickerSelect options={gebs} value={selectedGebId} />
+            <GebPickerSelect options={gebs} value={selectedGebName} />
           </Stack>
           <Stack
             horizontal
@@ -129,14 +128,14 @@ class AddressContainer extends Component {
             styles={buttonStackStyles}
           >
             <OkButton
-              plzId={selectedPlzId}
+              plzId={selectedPlzName}
               strId={selectedStrId}
-              gebId={selectedGebId}
+              gebId={selectedGebName}
             />
             <CancelButton
-              plzId={selectedPlzId}
+              plzId={selectedPlzName}
               strId={selectedStrId}
-              gebId={selectedGebId}
+              gebId={selectedGebName}
             />
           </Stack>
           {isLoading && (
@@ -160,10 +159,9 @@ const mapStateToProps = (state) => ({
   plzs: selectPlzs(state),
   strs: selectStrs(state),
   gebs: selectGebs(state),
-  selectedPlzId: selectedPlz(state),
+  selectedPlzName: selectedPlzName(state),
   selectedStrId: selectedStr(state),
-  selectedGebId: selectedGeb(state),
-  selectedPlz: getPlzById(state, state.ui.selectedPlz),
+  selectedGebId: selectedGebName(state),
   importSeqPlz: state.ui.importSeqPlz,
   importSeqStr: state.ui.importSeqStr,
   importSeqGeb: state.ui.importSeqGeb,

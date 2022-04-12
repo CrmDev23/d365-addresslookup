@@ -16,10 +16,10 @@ export const SET_FIELDNAMES = "SET_FIELDNAMES";
 
 export const SET_ISLOADING = "SET_ISLOADING";
 
-export const setPlz = (plzid) => ({
+export const setPlz = (plzname) => ({
   type: SET_PLZ,
   payload: {
-    plzid,
+    plzname,
   },
 });
 
@@ -30,10 +30,10 @@ export const setStr = (strid) => ({
   },
 });
 
-export const setGeb = (gebid) => ({
+export const setGeb = (gebname) => ({
   type: SET_GEB,
   payload: {
-    gebid,
+    gebname,
   },
 });
 

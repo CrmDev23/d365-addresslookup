@@ -6,11 +6,11 @@ export const selectStrs = state => state.ui.strs;
 
 export const selectGebs = state => state.ui.gebs;
 
-export const selectedPlz = state => state.ui.selectedPlz;
+export const selectedPlzName = state => state.ui.selectedPlzName;
 
 export const selectedStr = state => state.ui.selectedStr;
 
-export const selectedGeb = state => state.ui.selectedGeb;
+export const selectedGebName = state => state.ui.selectedGebName;
 
 // By id selectors
 

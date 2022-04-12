@@ -19,9 +19,9 @@ const initialState = {
     strs: [],
     gebs: [],
     configs: [],
-    selectedPlz: "",
+    selectedPlzName: "",
     selectedStr: "",
-    selectedGeb: "",
+    selectedGebName: "",
     fieldnames: {},
     importSeqPlz: 0,
     importSeqStr: 0,
@@ -52,7 +52,7 @@ const reducer = (state = initialState, action) => {
         _merge(draft.entities, resultEntitiesPlz);
         draft.ui[entityKeyPlz] = resultValuesPlz;
         let plz = resultEntitiesPlz.plzs[resultValuesPlz[0]];
-        draft.ui.selectedPlz = plz.mat_plz_ortbez27;
+        draft.ui.selectedPlzName = plz.mat_plz_ortbez27;
       });
 
       break;
@@ -154,10 +154,10 @@ const reducer = (state = initialState, action) => {
 
       break;
     case SET_PLZ:
-      const { plzid } = payload;
+      const { plzname } = payload;
 
       newState = produce(state, (draft) => {
-        draft.ui.selectedPlz = plzid;
+        draft.ui.selectedPlzName = plzname;
       });
 
       break;
@@ -184,10 +184,10 @@ const reducer = (state = initialState, action) => {
 
       break;
     case SET_GEB:
-      const { gebid } = payload;
+      const { gebname } = payload;
 
       newState = produce(state, (draft) => {
-        draft.ui.selectedGeb = gebid;
+        draft.ui.selectedGebName = gebname;
       });
 
       break;
