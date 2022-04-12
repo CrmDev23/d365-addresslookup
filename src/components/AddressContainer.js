@@ -161,7 +161,7 @@ const mapStateToProps = (state) => ({
   gebs: selectGebs(state),
   selectedPlzName: selectedPlzName(state),
   selectedStrId: selectedStr(state),
-  selectedGebId: selectedGebName(state),
+  selectedGebName: selectedGebName(state),
   importSeqPlz: state.ui.importSeqPlz,
   importSeqStr: state.ui.importSeqStr,
   importSeqGeb: state.ui.importSeqGeb,

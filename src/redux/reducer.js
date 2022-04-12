@@ -99,7 +99,7 @@ const reducer = (state = initialState, action) => {
           }, {});
           _merge(draft.entities.gebs, gebsReduced);
           draft.ui["gebs"] = gebs;
-          draft.ui.selectedGeb = gebs[0];
+          draft.ui.selectedGebName = gebs[0];
         }
 
         if (resultValuesStrFach.length > 0) {
