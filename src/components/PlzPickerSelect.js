@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setPlz } from "../redux/actions";
 import { getPlzsByIds } from "../redux/selectors";
 import _sortBy from "lodash/sortBy";
-import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import { VirtualizedComboBox } from "@fluentui/react";
 import intl from "react-intl-universal";
 
 class PlzPickerSelect extends Component {

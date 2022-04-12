@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPlzById, getStrById, getGebById } from "../redux/selectors";
-import { PrimaryButton } from "office-ui-fabric-react/lib/Button";
+import { PrimaryButton } from "@fluentui/react";
 import intl from "react-intl-universal";
 
 class CancelButton extends Component {

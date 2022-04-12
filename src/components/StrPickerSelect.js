@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setStr } from "../redux/actions";
 import { getStrsByIds } from "../redux/selectors";
-import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
+import { VirtualizedComboBox } from "@fluentui/react";
 import intl from "react-intl-universal";
 
 class StrPickerSelect extends Component {

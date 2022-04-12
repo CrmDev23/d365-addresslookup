@@ -22,11 +22,11 @@ import {
   selectedGeb,
   getPlzById,
 } from "../redux/selectors";
-import { Stack } from "office-ui-fabric-react/lib/Stack";
-import { Text } from "office-ui-fabric-react/lib/Text";
-import { FontWeights } from "office-ui-fabric-react";
-import { Spinner, SpinnerSize } from "office-ui-fabric-react/lib/Spinner";
-import { Overlay } from "office-ui-fabric-react";
+import { Stack } from "@fluentui/react";
+import { Text } from "@fluentui/react";
+import { FontWeights } from "@fluentui/react";
+import { Spinner, SpinnerSize } from "@fluentui/react";
+import { Overlay } from "@fluentui/react";
 import intl from "react-intl-universal";
 import { getUserLocal } from "../config";
 
