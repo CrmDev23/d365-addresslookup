@@ -23,6 +23,12 @@ export const getGebById = (state, id) => state.entities.gebs[id];
 export const getPlzsByIds = (state, ids) =>
   ids.map(id => state.entities.plzs[id]);
 
+export const getUniquePlzsNamesByIds = (state, ids) => {
+  let plzs = ids.map(id => state.entities.plzs[id].mat_plz_ortbez27);
+  let optionsOrtBez27Unique = [...new Set(plzs)];
+  return optionsOrtBez27Unique;
+}
+
 export const getStrsByIds = (state, ids) =>
   ids.map(id => state.entities.strs[id]);
 

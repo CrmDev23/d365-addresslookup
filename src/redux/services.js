@@ -20,7 +20,8 @@ export const fetchPlz = (importSeqPlz) => {
     minImportSeq +
     "','" +
     importSeqPlz +
-    "']))";
+    "']))" +
+    " and ((mat_plz_typ eq '20') or (mat_plz_typ eq '10'))";
   return allResults(query);
 };
 
@@ -45,19 +46,16 @@ export const fetchStr = (plz, importSeqStr) => {
 
 export const fetchStrFach = (plz, importSeqStr) => {
   let minImportSeq = importSeqStr - NrOfImportChunks + 1;
-  let plzType = plz.mat_plz_typ;
-  console.log("plzType " + plzType);
   let query =
     getClientUrl() +
     "mat_strs?$select=mat_str_strbez2l,mat_geb_hnr" +
-    "&$orderby=mat_str_strbez2l" +
-    "&$filter=_mat_plzid_value eq " +
-    plz.mat_plzid +
-    " and (Microsoft.Dynamics.CRM.Between(PropertyName='importsequencenumber',PropertyValues=['" +
+    "&$filter=(Microsoft.Dynamics.CRM.Between(PropertyName='importsequencenumber',PropertyValues=['" +
     minImportSeq +
     "','" +
     importSeqStr +
-    "']))";
+    "']))" +
+    " and mat_plzId/mat_plz_ortbez27 eq '" + plz + "'" +
+    "&$orderby=mat_str_strbez2l asc";
   return allResults(query);
 };
 

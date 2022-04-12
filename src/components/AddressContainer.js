@@ -9,7 +9,6 @@ import {
   setFieldnames,
 } from "../redux/actions";
 import OrtPickerSelect from "./OrtPickerSelect";
-import PlzPickerSelect from "./PlzPickerSelect";
 import StrPickerSelect from "./StrPickerSelect";
 import GebPickerSelect from "./GebPickerSelect";
 import OkButton from "./OkButton";
@@ -31,7 +30,7 @@ import { Overlay } from "office-ui-fabric-react";
 import intl from "react-intl-universal";
 import { getUserLocal } from "../config";
 
-class MealsContainer extends Component {
+class AddressContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { initDone: false };
@@ -82,25 +81,8 @@ class MealsContainer extends Component {
       prevProps.selectedPlzId !== this.props.selectedPlzId &&
       this.props.importSeqStr !== 0
     ) {
-      const { fetchStrs, fetchStrsFach, selectedPlz, importSeqStr } = this.props;
-      let plzType = selectedPlz.mat_plz_typ;
-      if (plzType === "30") {
-        fetchStrs(selectedPlz, importSeqStr);
-      }
-      else {
-        fetchStrsFach(selectedPlz, importSeqStr);
-      }
-    }
-    if (
-      this.props.selectedStrId &&
-      prevProps.selectedStrId !== this.props.selectedStrId &&
-      this.props.importSeqGeb !== 0
-    ) {
-      const { fetchGebs, selectedStrId, importSeqGeb } = this.props;
-      let plzType = selectedPlz.mat_plz_typ;
-      if (plzType === "30") {
-        fetchGebs(selectedStrId, importSeqGeb);
-      }
+      const { fetchStrsFach, selectedPlzId, importSeqStr } = this.props;
+      fetchStrsFach(selectedPlzId, importSeqStr);
     }
   }
 
@@ -138,7 +120,6 @@ class MealsContainer extends Component {
           </Stack>
           <Stack tokens={innerStackTokens}>
             <OrtPickerSelect options={plzs} value={selectedPlzId} />
-            <PlzPickerSelect options={plzs} value={selectedPlzId} />
             <StrPickerSelect options={strs} value={selectedStrId} />
             <GebPickerSelect options={gebs} value={selectedGebId} />
           </Stack>
@@ -198,4 +179,4 @@ const actionCreators = {
   setFieldnames,
 };
 
-export default connect(mapStateToProps, actionCreators)(MealsContainer);
+export default connect(mapStateToProps, actionCreators)(AddressContainer);

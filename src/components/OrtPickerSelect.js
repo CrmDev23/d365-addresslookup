@@ -1,33 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setPlz } from "../redux/actions";
-import { getPlzsByIds } from "../redux/selectors";
+import { getUniquePlzsNamesByIds } from "../redux/selectors";
 import { VirtualizedComboBox } from "office-ui-fabric-react/lib/ComboBox";
 import intl from "react-intl-universal";
 
 class OrtPickerSelect extends Component {
   render() {
     const { options, value } = this.props;
-    let optionsKeyValue = options.map((plz, index, array) => {
-      // If city names are equal, add plz in parentesis
-      if (
-        (index > 0 &&
-          array[index].mat_plz_ortbez27 ===
-            array[index - 1].mat_plz_ortbez27) ||
-        (array.length > index + 1 &&
-          array[index].mat_plz_ortbez27 === array[index + 1].mat_plz_ortbez27)
-      ) {
-        return {
-          key: plz.mat_plzid,
-          text: plz.mat_plz_ortbez27 + " (" + plz.mat_plz_postleitzahl + ")",
-        };
-      } else {
-        return {
-          key: plz.mat_plzid,
-          text: plz.mat_plz_ortbez27,
-        };
-      }
+    let optionsKeyValue = options.map((plz) => {
+      return {
+        key: plz,
+        text: plz,
+      };
     });
+
     return (
       <VirtualizedComboBox
         selectedKey={value}
@@ -52,7 +39,7 @@ class OrtPickerSelect extends Component {
 }
 
 const mapStateToProps = (state, { options }) => ({
-  options: getPlzsByIds(state, options),
+  options: getUniquePlzsNamesByIds(state, options),
 });
 
 const actionCreators = { setPlz };

@@ -51,7 +51,8 @@ const reducer = (state = initialState, action) => {
       newState = produce(state, (draft) => {
         _merge(draft.entities, resultEntitiesPlz);
         draft.ui[entityKeyPlz] = resultValuesPlz;
-        draft.ui.selectedPlz = resultValuesPlz[0];
+        let plz = resultEntitiesPlz.plzs[resultValuesPlz[0]];
+        draft.ui.selectedPlz = plz.mat_plz_ortbez27;
       });
 
       break;
@@ -165,6 +166,20 @@ const reducer = (state = initialState, action) => {
 
       newState = produce(state, (draft) => {
         draft.ui.selectedStr = strid;
+        let str = state.entities.strs[strid];
+        if (str != null && str.mat_geb_hnr != null){
+          let gebs = str.mat_geb_hnr.split(";");
+          let gebsReduced = gebs.reduce(function(acc, cur, i) {
+            let gebsObj = {};
+            gebsObj.mat_strid = cur;
+            gebsObj.mat_geb_hnr = cur;
+            acc[cur] = gebsObj;
+            return acc;
+          }, {});
+          _merge(draft.entities.gebs, gebsReduced);
+          draft.ui["gebs"] = gebs;
+          draft.ui.selectedGeb = gebs[0];
+        }
       });
 
       break;
