@@ -6,7 +6,7 @@ import {
   fetchStrsFach,
   fetchGebs,
   fetchConfigs,
-  setFieldnames,
+  setParameters,
 } from "../redux/actions";
 import OrtPickerSelect from "./OrtPickerSelect";
 import PlzPickerSelect from "./PlzPickerSelect";
@@ -59,13 +59,13 @@ class AddressContainer extends Component {
   componentDidMount() {
     this.loadLocales();
 
-    const { fetchConfigs, setFieldnames } = this.props;
+    const { fetchConfigs, setParameters } = this.props;
     fetchConfigs();
 
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("data")) {
-      const fieldnames = JSON.parse(urlParams.get("data"));
-      setFieldnames(fieldnames);
+      const parameters = JSON.parse(urlParams.get("data"));
+      setParameters(parameters);
     }
   }
 
@@ -179,7 +179,7 @@ const actionCreators = {
   fetchStrsFach,
   fetchGebs,
   fetchConfigs,
-  setFieldnames,
+  setParameters,
 };
 
 export default connect(mapStateToProps, actionCreators)(AddressContainer);

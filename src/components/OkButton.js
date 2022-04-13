@@ -52,9 +52,9 @@ const mapStateToProps = (state, { plzId, strId, gebId }) => ({
   plz: getPlzById(state, plzId),
   str: getStrById(state, strId),
   geb: getGebById(state, gebId),
-  plz_fieldname: state.ui.fieldnames.plz_fieldname,
-  str_fieldname: state.ui.fieldnames.str_fieldname,
-  city_fieldname: state.ui.fieldnames.city_fieldname
+  plz_fieldname: state.ui.parameters.plz_fieldname,
+  str_fieldname: state.ui.parameters.str_fieldname,
+  city_fieldname: state.ui.parameters.city_fieldname
 });
 
 export default connect(mapStateToProps)(OkButton);

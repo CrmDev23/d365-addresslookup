@@ -9,7 +9,7 @@ import {
   SET_PLZ,
   SET_STR,
   SET_GEB,
-  SET_FIELDNAMES,
+  SET_PARAMETERS,
   SET_ISLOADING,
 } from "./actions";
 
@@ -23,7 +23,7 @@ const initialState = {
     selectedPlz: "",
     selectedStr: "",
     selectedGebName: "",
-    fieldnames: {},
+    parameters: {},
     importSeqPlz: 0,
     importSeqStr: 0,
     importSeqGeb: 0,
@@ -198,11 +198,11 @@ const reducer = (state = initialState, action) => {
       });
 
       break;
-    case SET_FIELDNAMES:
-      const { fieldnames } = payload;
+    case SET_PARAMETERS:
+      const { parameters } = payload;
 
       newState = produce(state, (draft) => {
-        draft.ui.fieldnames = fieldnames;
+        draft.ui.parameters = parameters;
       });
 
       break;

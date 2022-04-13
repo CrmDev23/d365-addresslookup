@@ -12,7 +12,7 @@ export const SET_PLZ = "SET_PLZ";
 export const SET_STR = "SET_STR";
 export const SET_STR_FACH = "SET_STR_FACH";
 export const SET_GEB = "SET_GEB";
-export const SET_FIELDNAMES = "SET_FIELDNAMES";
+export const SET_PARAMETERS = "SET_PARAMETERS";
 
 export const SET_ISLOADING = "SET_ISLOADING";
 
@@ -37,10 +37,10 @@ export const setGeb = (gebname) => ({
   },
 });
 
-export const setFieldnames = (fieldnames) => ({
-  type: SET_FIELDNAMES,
+export const setParameters = (parameters) => ({
+  type: SET_PARAMETERS,
   payload: {
-    fieldnames,
+    parameters,
   },
 });
 
