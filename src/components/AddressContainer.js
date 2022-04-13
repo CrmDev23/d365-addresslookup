@@ -57,16 +57,17 @@ class AddressContainer extends Component {
   };
 
   componentDidMount() {
-    this.loadLocales();
-
     const { fetchConfigs, setParameters } = this.props;
-    fetchConfigs();
-
+    
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("data")) {
       const parameters = JSON.parse(urlParams.get("data"));
       setParameters(parameters);
     }
+
+    this.loadLocales();
+
+    fetchConfigs();
   }
 
   componentDidUpdate(prevProps) {

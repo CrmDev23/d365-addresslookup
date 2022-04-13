@@ -1,41 +1,17 @@
 import { from } from "./lcid";
+import store from './redux/store';
 
 export const NrOfImportChunks = 5;
 
-export const getContext = () => {
-  var context;
-  // GetGlobalContext defined by including reference to
-  // ClientGlobalContext.js.aspx in the HTML page.
-  if (typeof GetGlobalContext != "undefined") {
-    // eslint-disable-next-line no-undef
-    context = GetGlobalContext();
-  } else {
-    if (typeof Xrm != "undefined") {
-      // Xrm.Page.context defined within the Xrm.Page object model for form scripts.
-      // eslint-disable-next-line no-undef
-      context = Xrm.Page.context;
-    } else {
-      throw new Error("Context is not available.");
-    }
-  }
-  return context;
-};
-
 export const getClientUrl = () => {
-  if (process.env.NODE_ENV === "production") {
-    return getContext().getClientUrl() + "/api/data/v9.1/";
-  } else {
-    return "https://2dd60c03-c292-414e-b888-842e51d8e968.mock.pstmn.io/api/data/v9.1/";
-  }
+  const state = store.getState();
+  const crm_client_url = state.ui.parameters.crm_client_url;
+  return crm_client_url;
 };
 
 export const getUserLocal = () => {
-  let lcid;
-  if (process.env.NODE_ENV !== "production") {
-    lcid = 1033;
-  } else {
-    lcid = getContext().getUserLcid();
-  }
-  const locale = from(lcid);
+  const state = store.getState();
+  const crm_lcid = state.ui.parameters.crm_lcid;
+  const locale = from(crm_lcid);
   return locale;
 };

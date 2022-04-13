@@ -76,7 +76,9 @@ export const fetchGeb = (str, importSeqGeb) => {
 };
 
 export const fetchConfig = () => {
-  let query = getClientUrl() + "mat_configs";
+  let query =
+  getClientUrl() +
+  "mat_configs";
   return allResults(query);
 };
 
