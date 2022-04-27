@@ -14,12 +14,6 @@ class OkButton extends Component {
       str_fieldname,
       city_fieldname
     } = this.props;
-    let gebText = "";
-    if (geb.mat_geb_hnra) {
-      gebText = geb.mat_geb_hnr + geb.mat_geb_hnra;
-    } else if (geb.mat_geb_hnr) {
-      gebText = geb.mat_geb_hnr.toString();
-    }
     window.parent.parent.opener.Xrm.Page.getAttribute(plz_fieldname).setValue(
       plz.mat_plz_postleitzahl
     );
@@ -27,7 +21,7 @@ class OkButton extends Component {
       plz.mat_plz_ortbez27
     );
     window.parent.parent.opener.Xrm.Page.getAttribute(str_fieldname).setValue(
-      str.mat_str_strbez2l + " " + gebText
+      str.mat_str_strbez2l + " " + geb.mat_geb_hnr
     );
     window.parent.parent.close();
   };

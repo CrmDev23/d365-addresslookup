@@ -133,12 +133,12 @@ class AddressContainer extends Component {
             styles={buttonStackStyles}
           >
             <OkButton
-              plzId={selectedPlzName}
+              plzId={selectedPlzId}
               strId={selectedStrId}
               gebId={selectedGebName}
             />
             <CancelButton
-              plzId={selectedPlzName}
+              plzId={selectedPlzId}
               strId={selectedStrId}
               gebId={selectedGebName}
             />
