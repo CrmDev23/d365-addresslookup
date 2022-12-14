@@ -10,10 +10,7 @@ class OkButton extends Component {
     const {
       plz,
       str,
-      geb,
-      plz_fieldname,
-      str_fieldname,
-      city_fieldname
+      geb
     } = this.props;
     var addressDetails = {};
     addressDetails = { "str": str.mat_str_strbez2l + " " + geb.mat_geb_hnr,  "plz": plz.mat_plz_postleitzahl, "city": plz.mat_plz_ortbez27 };
@@ -41,10 +38,7 @@ class OkButton extends Component {
 const mapStateToProps = (state, { plzId, strId, gebId }) => ({
   plz: getPlzById(state, plzId),
   str: getStrById(state, strId),
-  geb: getGebById(state, gebId),
-  plz_fieldname: state.ui.parameters.plz_fieldname,
-  str_fieldname: state.ui.parameters.str_fieldname,
-  city_fieldname: state.ui.parameters.city_fieldname
+  geb: getGebById(state, gebId)
 });
 
 export default connect(mapStateToProps)(OkButton);
