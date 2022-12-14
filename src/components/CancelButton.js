@@ -6,7 +6,8 @@ import intl from "react-intl-universal";
 
 class CancelButton extends Component {
   handleClick = () => {
-    window.parent.parent.close();
+    sessionStorage.removeItem("addressDetails");
+    window.close();
   };
 
   render() {

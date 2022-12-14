@@ -117,11 +117,6 @@ class AddressContainer extends Component {
       this.state.initDone && (
         <Stack>
           <Stack tokens={innerStackTokens}>
-            <Text variant="large" styles={titleBoldStyle}>
-              {intl.get("SELECT_ADDRESS")}
-            </Text>
-          </Stack>
-          <Stack tokens={innerStackTokens}>
             <OrtPickerSelect options={plzs} value={selectedPlzName} />
             <PlzPickerSelect options={plzs} value={selectedPlzId} />
             <StrPickerSelect options={strs} value={selectedStrId} />

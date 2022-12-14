@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPlzById, getStrById, getGebById } from "../redux/selectors";
 import { PrimaryButton } from "@fluentui/react";
+import { getClientUrl } from "../config";
 import intl from "react-intl-universal";
 
 class OkButton extends Component {
@@ -14,16 +15,11 @@ class OkButton extends Component {
       str_fieldname,
       city_fieldname
     } = this.props;
-    window.parent.parent.opener.Xrm.Page.getAttribute(plz_fieldname).setValue(
-      plz.mat_plz_postleitzahl
-    );
-    window.parent.parent.opener.Xrm.Page.getAttribute(city_fieldname).setValue(
-      plz.mat_plz_ortbez27
-    );
-    window.parent.parent.opener.Xrm.Page.getAttribute(str_fieldname).setValue(
-      str.mat_str_strbez2l + " " + geb.mat_geb_hnr
-    );
-    window.parent.parent.close();
+    var addressDetails = {};
+    addressDetails = { "str": str.mat_str_strbez2l + " " + geb.mat_geb_hnr,  "plz": plz.mat_plz_postleitzahl, "city": plz.mat_plz_ortbez27 };
+    var stringifiedJSON = JSON.stringify(addressDetails);
+    sessionStorage.setItem("addressDetails", stringifiedJSON);
+    window.close();
   };
 
   render() {
