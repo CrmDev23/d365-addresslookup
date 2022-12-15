@@ -28,11 +28,14 @@ function openWebResource(formContext) {
     Xrm.Navigation.navigateTo(dialogParameters, navigationOptions).then(
         function (returnValue) {
             let addressDetailsString = sessionStorage.getItem("addressDetails");
-            let addressDetails = JSON.parse(addressDetailsString);
-            formContext.getAttribute("address1_line1").setValue(addressDetails.str);  
-            formContext.getAttribute("address1_postalcode").setValue(addressDetails.plz); 
-            formContext.getAttribute("address1_city").setValue(addressDetails.city);
-            sessionStorage.removeItem("addressDetails");
+            if (addressDetailsString != null)
+            {
+              let addressDetails = JSON.parse(addressDetailsString);
+              formContext.getAttribute("address1_line1").setValue(addressDetails.str);  
+              formContext.getAttribute("address1_postalcode").setValue(addressDetails.plz); 
+              formContext.getAttribute("address1_city").setValue(addressDetails.city);
+              sessionStorage.removeItem("addressDetails");
+            }
         },
         function (e) {
             Xrm.Navigation.openErrorDialog(e);
