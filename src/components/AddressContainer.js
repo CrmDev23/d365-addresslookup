@@ -24,7 +24,6 @@ import {
   selectedGebName
 } from "../redux/selectors";
 import { Stack } from "@fluentui/react";
-import { Text } from "@fluentui/react";
 import { FontWeights } from "@fluentui/react";
 import { Spinner, SpinnerSize } from "@fluentui/react";
 import { Overlay } from "@fluentui/react";
@@ -100,7 +99,6 @@ class AddressContainer extends Component {
       isLoading,
     } = this.props;
 
-    const titleBoldStyle = { root: { fontWeight: FontWeights.semibold } };
     const buttonStackStyles = {
       root: {
         alignItems: "center",

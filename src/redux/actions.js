@@ -4,7 +4,7 @@ import { plzSchema, strSchema, gebSchema, configSchema } from "./schemas";
 
 export const FETCH_PLZS = "FETCH_PLZS";
 export const FETCH_STRS = "FETCH_STRS";
-export const FETCH_STRS_FACH = "FETCH_STRS_FACH";
+export const FETCH_PLZ_STRS_FACH = "FETCH_PLZ_STRS_FACH";
 export const FETCH_GEBS = "FETCH_GEBS";
 export const FETCH_CONFIGS = "FETCH_CONFIGS";
 
@@ -68,7 +68,7 @@ export const fetchStrs = (plz, importSeqStr) => (dispatch) => {
 export const fetchStrsFach = (plz, importSeqStr) => (dispatch) => {
   dispatch(setIsloading(true));
   return fetchStrFach(plz, importSeqStr).then(
-    fetchCallback("strs", dispatch, strSchema, FETCH_STRS_FACH)
+    fetchCallback("strs", dispatch, strSchema, FETCH_PLZ_STRS_FACH)
   );
 };
 

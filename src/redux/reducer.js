@@ -3,7 +3,7 @@ import _merge from "lodash/merge";
 import {
   FETCH_PLZS,
   FETCH_STRS,
-  FETCH_STRS_FACH,
+  FETCH_PLZ_STRS_FACH,
   FETCH_GEBS,
   FETCH_CONFIGS,
   SET_PLZ,
@@ -77,7 +77,7 @@ const reducer = (state = initialState, action) => {
 
       break;
 
-    case FETCH_STRS_FACH:
+    case FETCH_PLZ_STRS_FACH:
       const {
         resultEntities: resultEntitiesStrFach,
         entityKey: entityKeyStrFach,

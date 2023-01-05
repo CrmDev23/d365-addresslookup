@@ -15,7 +15,10 @@ export const getClientUrl = () => {
 
 export const getUserLocal = () => {
   const state = store.getState();
-  const crm_lcid = state.ui.parameters.crm_lcid;
+  let crm_lcid = state.ui.parameters.crm_lcid;
+  if (crm_lcid == null){
+    crm_lcid = 1033;
+  }
   const locale = from(crm_lcid);
   return locale;
 };
