@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPlzById, getStrById, getGebById } from "../redux/selectors";
-import { PrimaryButton } from "@fluentui/react";
+import { DefaultButton } from '@fluentui/react/lib/Button';
 import intl from "react-intl-universal";
 
 class CancelButton extends Component {
@@ -17,7 +17,7 @@ class CancelButton extends Component {
       }
     };
     return (
-      <PrimaryButton
+      <DefaultButton
         styles={buttonStyles}
         text={intl.get("CANCEL")}
         onClick={this.handleClick}

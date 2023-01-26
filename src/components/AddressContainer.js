@@ -25,15 +25,30 @@ import {
 } from "../redux/selectors";
 import { Stack } from "@fluentui/react";
 import { FontWeights } from "@fluentui/react";
-import { Spinner, SpinnerSize } from "@fluentui/react";
+import { Spinner, SpinnerSize } from "@fluentui/react/lib/Spinner";
+import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
 import { Overlay } from "@fluentui/react";
+import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
 import intl from "react-intl-universal";
 import { getUserLocal } from "../config";
+
+const dialogStyles = { main: { maxWidth: 450 } };
+const dialogContentProps = {
+  type: DialogType.normal,
+  title: 'Missing Subject',
+  closeButtonAriaLabel: 'Close',
+  subText: 'Do you want to send this message without a subject?',
+};
+const modalProps = {
+    isBlocking: false,
+    styles: dialogStyles,
+    dragOptions: undefined,
+  };
 
 class AddressContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { initDone: false };
+    this.state = { initDone: false, hideDialog: false };
   }
 
   getLocale = (locale) => {
@@ -97,6 +112,7 @@ class AddressContainer extends Component {
       selectedStrId,
       selectedGebName,
       isLoading,
+      isImportRunning,
     } = this.props;
 
     const buttonStackStyles = {
@@ -114,6 +130,8 @@ class AddressContainer extends Component {
     return (
       this.state.initDone && (
         <Stack>
+          <Stack tokens={innerStackTokens}>
+          </Stack>
           <Stack tokens={innerStackTokens}>
             <OrtPickerSelect options={plzs} value={selectedPlzName} />
             <PlzPickerSelect options={plzs} value={selectedPlzId} />
@@ -147,6 +165,25 @@ class AddressContainer extends Component {
               </Stack>
             </Overlay>
           )}
+          {isImportRunning && (
+            <Dialog
+              hidden={this.state.hideDialog}
+              onDismiss={() => {
+                this.setState({ hideDialog: true });
+              }}
+              dialogContentProps={dialogContentProps}
+              modalProps={modalProps}
+            >
+              <DialogFooter>
+                <PrimaryButton onClick={() => {
+                  this.setState({ hideDialog: true });
+                }} text="Send" />
+                <DefaultButton onClick={() => {
+                  this.setState({ hideDialog: true });
+                }} text="Don't send" />
+              </DialogFooter>
+            </Dialog>
+          )}
         </Stack>
       )
     );
@@ -165,6 +202,7 @@ const mapStateToProps = (state) => ({
   importSeqStr: state.ui.importSeqStr,
   importSeqGeb: state.ui.importSeqGeb,
   isLoading: state.ui.isLoading,
+  isImportRunning: state.ui.isImportRunning,
 });
 
 const actionCreators = {

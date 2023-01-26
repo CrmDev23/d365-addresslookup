@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPlzById, getStrById, getGebById } from "../redux/selectors";
-import { PrimaryButton } from "@fluentui/react";
+import { PrimaryButton } from '@fluentui/react/lib/Button';
 import intl from "react-intl-universal";
 
 class OkButton extends Component {

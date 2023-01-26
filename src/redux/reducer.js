@@ -28,6 +28,7 @@ const initialState = {
     importSeqStr: 0,
     importSeqGeb: 0,
     isLoading: false,
+    isImportRunning: false,
   },
   entities: {
     plzs: {},
@@ -144,16 +145,13 @@ const reducer = (state = initialState, action) => {
         draft.ui.importSeqPlz = config.mat_plzimportsequencenumber
           ? config.mat_plzimportsequencenumber
           : config.mat_plzimportsequencenumber_next;
-        draft.ui.importSeqStr = resultEntitiesConfig.configs[
-          resultValuesConfig[0]
-        ].mat_strimportsequencenumber
+        draft.ui.importSeqStr = config.mat_strimportsequencenumber
           ? config.mat_strimportsequencenumber
           : config.mat_strimportsequencenumber_next;
-        draft.ui.importSeqGeb = resultEntitiesConfig.configs[
-          resultValuesConfig[0]
-        ].mat_gebimportsequencenumber
+        draft.ui.importSeqGeb = config.mat_gebimportsequencenumber
           ? config.mat_gebimportsequencenumber
           : config.mat_gebimportsequencenumber_next;
+        draft.ui.isImportRunning = config.mat_gebimportsequencenumber !== config.mat_gebimportsequencenumber_next;
       });
 
       break;
