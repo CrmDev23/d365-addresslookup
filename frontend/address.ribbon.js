@@ -20,9 +20,9 @@ function openWebResource(formContext) {
     var navigationOptions = {
         target: 2,//use 1 if you want to open page inline or 2 to open it as dialog
         width: 310,
-        height: 420,
+        height: 440,
         position: 1,
-        title: "Address lookup"
+        title: "CH Address Lookup"
     };
     
     Xrm.Navigation.navigateTo(dialogParameters, navigationOptions).then(
