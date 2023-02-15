@@ -110,7 +110,7 @@ namespace SwissAddressPackage
         /// <returns></returns>
         public override string GetNameOfImport(bool plural)
         {
-            return "Package Short Name";
+            return "Swiss Address Lookup";
         }
 
         /// <summary>
