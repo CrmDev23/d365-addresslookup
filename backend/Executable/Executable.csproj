@@ -156,7 +156,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="SwissAddressMatcher_0_1.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
