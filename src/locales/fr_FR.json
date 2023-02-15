@@ -1,0 +1,11 @@
+{
+  "SELECT_ADDRESS": "Veuillez sélectionner l'adresse",
+  "CITY": "Lieu",
+  "POSTALCODE": "Code postal",
+  "STREET": "Rue",
+  "STREET_NUMBER": "Numéro",
+  "OK": "OK",
+  "CANCEL": "Annuler",
+  "DIALOG_TITLE": "Importation de données en cours",
+  "DIALOG_SUBTEXT": "Veuillez vérifier l'état dans Settings, Data management, Imports."
+}

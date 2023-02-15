@@ -32,18 +32,6 @@ import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
 import intl from "react-intl-universal";
 import { getUserLocal } from "../config";
 
-const dialogStyles = { main: { maxWidth: 450 } };
-const dialogContentProps = {
-  type: DialogType.normal,
-  title: 'Missing Subject',
-  closeButtonAriaLabel: 'Close',
-  subText: 'Do you want to send this message without a subject?',
-};
-const modalProps = {
-    isBlocking: false,
-    styles: dialogStyles,
-    dragOptions: undefined,
-  };
 
 class AddressContainer extends Component {
   constructor(props) {
@@ -126,6 +114,18 @@ class AddressContainer extends Component {
     const innerStackTokens = { childrenGap: 5, padding: 10 };
     const buttonStackTokens = { childrenGap: 50, padding: 20 };
     const overlayStackTokens = { padding: 180 };
+    const dialogStyles = { main: { maxWidth: 450 } };
+    const dialogContentProps = {
+      type: DialogType.normal,
+      title: intl.get("DIALOG_TITLE"),
+      closeButtonAriaLabel: "Close",
+      subText: intl.get("DIALOG_SUBTEXT"),
+    };
+    const modalProps = {
+        isBlocking: false,
+        styles: dialogStyles,
+        dragOptions: undefined,
+      };
 
     return (
       this.state.initDone && (
@@ -177,10 +177,7 @@ class AddressContainer extends Component {
               <DialogFooter>
                 <PrimaryButton onClick={() => {
                   this.setState({ hideDialog: true });
-                }} text="Send" />
-                <DefaultButton onClick={() => {
-                  this.setState({ hideDialog: true });
-                }} text="Don't send" />
+                }} text={intl.get("OK")} />
               </DialogFooter>
             </Dialog>
           )}

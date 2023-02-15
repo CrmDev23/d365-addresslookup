@@ -5,5 +5,7 @@
   "STREET": "Strasse",
   "STREET_NUMBER": "Nummer",
   "OK": "OK",
-  "CANCEL": "Abbrechen"
+  "CANCEL": "Abbrechen",
+  "DIALOG_TITLE": "Daten Import läuft",
+  "DIALOG_SUBTEXT": "Bitte den Status prüfen in Settings, Data management, Imports."
 }
