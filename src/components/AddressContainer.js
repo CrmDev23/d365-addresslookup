@@ -118,7 +118,6 @@ class AddressContainer extends Component {
     const dialogContentProps = {
       type: DialogType.normal,
       title: intl.get("DIALOG_TITLE"),
-      closeButtonAriaLabel: "Close",
       subText: intl.get("DIALOG_SUBTEXT"),
     };
     const modalProps = {
