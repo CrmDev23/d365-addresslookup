@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SwissAddressPackage
@@ -93,7 +94,21 @@ namespace SwissAddressPackage
                 ImportZipFileHelper.StartSingleBulkDeleteJob(CrmSvc, RecordType.STR, userId, PackageLog);
                 ImportZipFileHelper.StartSingleBulkDeleteJob(CrmSvc, RecordType.PLZ, userId, PackageLog);
                 ImportZipFileHelper.ScheduleBulkDeleteAsyncOperations(CrmSvc, userId, PackageLog);
-                string zippath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\PkgFolder\\Post_Adressdaten-20230103.zip";
+
+                string zipfolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\PkgFolder";
+
+                string pattern = @"^Post_Adressdaten";
+                string zippath = string.Empty;
+                var matches = Directory
+                  .GetFiles(zipfolder)
+                  .Where(path => Regex.IsMatch(Path.GetFileName(path), pattern));
+
+                foreach ( var match in matches) 
+                {
+                    zippath = match;
+                    this.PackageLog.Log($"Post_Adressdaten file found: '{zippath}'");
+                }
+
                 string base64 = ConvertToBase64(zippath);
                 ImportZipFileHelper.SubmitImportRecords(CrmSvc, userId, base64, PackageLog);
                 ImportZipFileHelper.StartSubmitedImportJobs(CrmSvc, RecordType.PLZ, PackageLog);
